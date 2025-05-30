@@ -7,6 +7,57 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript)](https://www.typescriptlang.org/)
 [![Documentation](https://img.shields.io/badge/Documentation-Read%20the%20Docs-blue)](./docs/)
 
+## 🚨 Important Notice: Demo Implementation
+
+This demonstration project includes several mock implementations for development and demonstration purposes. These mocks allow you to explore the system's capabilities without requiring full integration with external services.
+
+### Mock Implementations
+
+#### 1. Authentication
+- **Location**: `server/middleware/auth.js`
+- **Purpose**: Bypasses JWT validation in development mode
+- **Behavior**: Automatically authenticates with a mock admin user
+- **Production Note**: Replace with proper JWT validation and user management
+
+#### 2. AI Analysis
+- **Location**: `server/services/aiProviderService.js`
+- **Purpose**: Provides simulated AI analysis responses
+- **Behavior**: Returns mock risk scores and analysis
+- **Production Note**: Configure with actual AI provider credentials
+
+#### 3. Transaction Processing
+- **Location**: `server/routes/transactionRoutes.js`
+- **Purpose**: Simulates transaction processing
+- **Behavior**: Processes transactions without actual financial integration
+- **Production Note**: Integrate with actual payment processors and banking APIs
+
+### Important Disclaimers
+
+1. **Not Production Ready**
+   - This demo uses mock implementations that are not suitable for production use
+   - Critical security features like authentication are simplified for demonstration
+
+2. **Data Privacy**
+   - No sensitive data should be processed in this demo environment
+   - All transaction data is processed in-memory and not persisted
+
+3. **Performance**
+   - Performance characteristics do not reflect production environments
+   - No load balancing or scaling is implemented in the demo
+
+4. **Business Logic**
+   - Risk scoring and analysis are simulated
+   - Financial projections and metrics are for demonstration only
+
+### Next Steps for Production Implementation
+
+Before deploying to production, you must:
+1. Implement proper authentication and authorization
+2. Integrate with real AI providers and payment processors
+3. Set up proper logging and monitoring
+4. Configure security settings according to your organization's policies
+5. Conduct thorough security and performance testing
+
 > **Note**: This is a demonstration project. All API endpoints, rate limits, and scaling configurations are for demonstration purposes only. Production implementations should be tailored to specific business requirements and security needs.
 
 ## Overview
