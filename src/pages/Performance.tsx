@@ -16,30 +16,30 @@ const Performance = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <StatsCard 
-            title="Total Agent Runs" 
-            value="1,284" 
+          <StatsCard
+            title="Total Agent Runs"
+            value="1,284"
             icon={<Users className="h-5 w-5" />}
             change={{ value: 12.5, isPositive: true }}
             bgColor="bg-white"
           />
-          <StatsCard 
-            title="Success Rate" 
-            value="92.3%" 
+          <StatsCard
+            title="Success Rate"
+            value="92.3%"
             icon={<TrendingUp className="h-5 w-5" />}
             change={{ value: 2.1, isPositive: true }}
             bgColor="bg-white"
           />
-          <StatsCard 
-            title="Avg Response Time" 
-            value="1.2s" 
+          <StatsCard
+            title="Avg Response Time"
+            value="1.2s"
             icon={<TrendingDown className="h-5 w-5" />}
             change={{ value: 0.3, isPositive: true }}
             bgColor="bg-white"
           />
-          <StatsCard 
-            title="User Satisfaction" 
-            value="4.8/5" 
+          <StatsCard
+            title="User Satisfaction"
+            value="4.8/5"
             icon={<Users className="h-5 w-5" />}
             change={{ value: 0.2, isPositive: true }}
             bgColor="bg-white"
@@ -68,16 +68,28 @@ const Performance = () => {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
                     Agent
                   </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
                     Success Rate
                   </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
                     Avg Response Time
                   </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
                     Total Runs
                   </th>
                 </tr>

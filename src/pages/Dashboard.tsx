@@ -2,7 +2,10 @@ import { useState, useEffect, useCallback, FC } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { useAIService } from '../hooks/useAIService';
-import TransactionAnalyzer, { Transaction, AnalysisResult } from '../components/TransactionAnalyzer';
+import TransactionAnalyzer, {
+  Transaction,
+  AnalysisResult,
+} from '../components/TransactionAnalyzer';
 import { User } from 'lucide-react';
 
 interface DashboardProps {}
@@ -17,14 +20,15 @@ interface CustomerRisk extends AnalysisResult {
 }
 
 const RiskBadge: FC<RiskBadgeProps> = ({ level, defaultLevel = 'Low' }) => {
-  const effectiveLevel = (level && ['High', 'Medium', 'Low'].includes(level)) 
-    ? level as 'High' | 'Medium' | 'Low'
-    : defaultLevel;
-    
+  const effectiveLevel =
+    level && ['High', 'Medium', 'Low'].includes(level)
+      ? (level as 'High' | 'Medium' | 'Low')
+      : defaultLevel;
+
   const colors = {
     High: 'bg-red-100 text-red-800',
     Medium: 'bg-yellow-100 text-yellow-800',
-    Low: 'bg-green-100 text-green-800'
+    Low: 'bg-green-100 text-green-800',
   } as const;
 
   return (
@@ -38,59 +42,59 @@ const Dashboard: FC<DashboardProps> = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const { getRiskAssessment } = useAIService();
-  
+
   // Sample transaction history - in a real app, this would come from an API
   const [transactions, setTransactions] = useState<Transaction[]>([
-    { 
-      id: 1, 
-      amount: '150.75', 
-      merchant: 'Amazon', 
+    {
+      id: 1,
+      amount: '150.75',
+      merchant: 'Amazon',
       location: 'Online',
-      date: '2023-05-15T10:30:00Z', 
+      date: '2023-05-15T10:30:00Z',
       status: 'completed',
       riskScore: 25,
-      riskLevel: 'Low' as const
+      riskLevel: 'Low' as const,
     },
-    { 
-      id: 2, 
-      amount: '29.99', 
-      merchant: 'Netflix', 
+    {
+      id: 2,
+      amount: '29.99',
+      merchant: 'Netflix',
       location: 'Online',
-      date: '2023-05-14T19:45:00Z', 
+      date: '2023-05-14T19:45:00Z',
       status: 'completed',
       riskScore: 10,
-      riskLevel: 'Low' as const
+      riskLevel: 'Low' as const,
     },
-    { 
-      id: 3, 
-      amount: '1250.00', 
-      merchant: 'ElectroHub', 
+    {
+      id: 3,
+      amount: '1250.00',
+      merchant: 'ElectroHub',
       location: 'New York, NY',
-      date: '2023-05-13T14:20:00Z', 
+      date: '2023-05-13T14:20:00Z',
       status: 'pending',
       riskScore: 45,
-      riskLevel: 'Medium' as const
+      riskLevel: 'Medium' as const,
     },
-    { 
-      id: 4, 
-      amount: '85.50', 
-      merchant: 'Cafe Mocha', 
+    {
+      id: 4,
+      amount: '85.50',
+      merchant: 'Cafe Mocha',
       location: 'San Francisco, CA',
-      date: '2023-05-12T08:15:00Z', 
+      date: '2023-05-12T08:15:00Z',
       status: 'completed',
       riskScore: 35,
-      riskLevel: 'Medium' as const
+      riskLevel: 'Medium' as const,
     },
-    { 
-      id: 5, 
-      amount: '450.00', 
-      merchant: 'TechGadgets', 
+    {
+      id: 5,
+      amount: '450.00',
+      merchant: 'TechGadgets',
       location: 'Online',
-      date: '2023-05-10T16:30:00Z', 
+      date: '2023-05-10T16:30:00Z',
       status: 'completed',
       riskScore: 40,
-      riskLevel: 'Medium' as const
-    }
+      riskLevel: 'Medium' as const,
+    },
   ]);
 
   const [customerRisk, setCustomerRisk] = useState<CustomerRisk>({
@@ -99,9 +103,9 @@ const Dashboard: FC<DashboardProps> = () => {
     explanation: '',
     recommendedAction: 'No action required',
     confidence: 95,
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   });
-  
+
   const [isLoadingRisk, setIsLoadingRisk] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<'overview' | 'transactions' | 'analyze'>('overview');
   const [isAnalyzing, setIsAnalyzing] = useState(false);
@@ -116,35 +120,33 @@ const Dashboard: FC<DashboardProps> = () => {
       console.error('Failed to log out', error);
     }
   };
-  
 
-
-  
   // Calculate summary metrics
   const totalTransactions = transactions.length;
   const totalAmount = transactions.reduce((sum, t) => {
     const amount = parseFloat(t.amount) || 0;
     return sum + amount;
   }, 0);
-  
-  const avgRiskScore = transactions.length > 0 
-    ? transactions.reduce((sum, t) => sum + (t.riskScore || 0), 0) / transactions.length 
-    : 0;
+
+  const avgRiskScore =
+    transactions.length > 0
+      ? transactions.reduce((sum, t) => sum + (t.riskScore || 0), 0) / transactions.length
+      : 0;
 
   // Get customer risk assessment
   const fetchCustomerRisk = useCallback(async () => {
     if (!user) return;
-    
+
     setIsLoadingRisk(true);
-    setCustomerRisk(prev => ({
+    setCustomerRisk((prev) => ({
       ...prev,
-      explanation: 'Loading risk assessment...'
+      explanation: 'Loading risk assessment...',
     }));
-    
+
     try {
       const assessment = await getRiskAssessment({
         customerId: user.sub || 'demo-customer-123',
-        transactionHistory: transactions.map(t => ({
+        transactionHistory: transactions.map((t) => ({
           id: t.id,
           amount: parseFloat(t.amount),
           merchant: t.merchant,
@@ -152,15 +154,15 @@ const Dashboard: FC<DashboardProps> = () => {
           date: t.date,
           status: t.status,
           riskScore: t.riskScore,
-          riskLevel: t.riskLevel
-        }))
+          riskLevel: t.riskLevel,
+        })),
       });
       setCustomerRisk(assessment);
     } catch (err) {
       console.error('Failed to fetch customer risk:', err);
-      setCustomerRisk(prev => ({
+      setCustomerRisk((prev) => ({
         ...prev,
-        explanation: 'Failed to load risk assessment. Please try again.'
+        explanation: 'Failed to load risk assessment. Please try again.',
       }));
     } finally {
       setIsLoadingRisk(false);
@@ -172,7 +174,7 @@ const Dashboard: FC<DashboardProps> = () => {
     fetchCustomerRisk();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
-  
+
   // Refresh risk assessment when transactions change
   useEffect(() => {
     if (transactions.length > 0) {
@@ -180,50 +182,52 @@ const Dashboard: FC<DashboardProps> = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [transactions]);
-  
+
   // Handle analysis completion from TransactionAnalyzer with proper typing
-  const handleAnalysisComplete = useCallback((result: AnalysisResult) => {
-    try {
-      setIsAnalyzing(true);
-      
-      // Create a new transaction with the analysis result
-      const newTransaction: Transaction = {
-        id: transactions.length + 1,
-        amount: '0', // This would come from the actual transaction data
-        merchant: 'Unknown',
-        location: 'Unknown',
-        date: new Date().toISOString(),
-        status: 'completed',
-        riskScore: result.riskScore,
-        riskLevel: result.riskLevel
-      };
-      
-      setTransactions(prev => [newTransaction, ...prev]);
-      
-      // Update customer risk with the new analysis result
-      const updatedTransactions = [newTransaction, ...transactions];
-      const avgRiskScore = calculateAverageRisk(updatedTransactions);
-      
-      setCustomerRisk(prev => ({
-        ...prev,
-        riskScore: avgRiskScore,
-        riskLevel: avgRiskScore >= 60 ? 'High' : avgRiskScore >= 30 ? 'Medium' : 'Low',
-        explanation: result.explanation || prev.explanation,
-        recommendedAction: result.recommendedAction || prev.recommendedAction,
-        confidence: result.confidence || prev.confidence
-      }));
-      
-    } catch (error) {
-      console.error('Error processing analysis result:', error);
-      setCustomerRisk(prev => ({
-        ...prev,
-        explanation: 'Failed to process transaction analysis. Please try again.'
-      }));
-    } finally {
-      setIsAnalyzing(false);
-    }
-  }, [transactions.length]);
-  
+  const handleAnalysisComplete = useCallback(
+    (result: AnalysisResult) => {
+      try {
+        setIsAnalyzing(true);
+
+        // Create a new transaction with the analysis result
+        const newTransaction: Transaction = {
+          id: transactions.length + 1,
+          amount: '0', // This would come from the actual transaction data
+          merchant: 'Unknown',
+          location: 'Unknown',
+          date: new Date().toISOString(),
+          status: 'completed',
+          riskScore: result.riskScore,
+          riskLevel: result.riskLevel,
+        };
+
+        setTransactions((prev) => [newTransaction, ...prev]);
+
+        // Update customer risk with the new analysis result
+        const updatedTransactions = [newTransaction, ...transactions];
+        const avgRiskScore = calculateAverageRisk(updatedTransactions);
+
+        setCustomerRisk((prev) => ({
+          ...prev,
+          riskScore: avgRiskScore,
+          riskLevel: avgRiskScore >= 60 ? 'High' : avgRiskScore >= 30 ? 'Medium' : 'Low',
+          explanation: result.explanation || prev.explanation,
+          recommendedAction: result.recommendedAction || prev.recommendedAction,
+          confidence: result.confidence || prev.confidence,
+        }));
+      } catch (error) {
+        console.error('Error processing analysis result:', error);
+        setCustomerRisk((prev) => ({
+          ...prev,
+          explanation: 'Failed to process transaction analysis. Please try again.',
+        }));
+      } finally {
+        setIsAnalyzing(false);
+      }
+    },
+    [transactions.length]
+  );
+
   // Format currency - handle both string and number inputs
   const formatCurrency = (amount: string | number): string => {
     const numAmount = typeof amount === 'string' ? parseFloat(amount) || 0 : amount;
@@ -232,13 +236,13 @@ const Dashboard: FC<DashboardProps> = () => {
       currency: 'USD',
     }).format(numAmount);
   };
-  
+
   // Format date
   const formatDate = (dateString: string): string => {
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'short',
-      day: 'numeric'
+      day: 'numeric',
     });
   };
 
@@ -305,9 +309,7 @@ const Dashboard: FC<DashboardProps> = () => {
                 </div>
                 <div className="ml-5 w-0 flex-1">
                   <dl>
-                    <dt className="text-sm font-medium text-gray-500 truncate">
-                      Total Amount
-                    </dt>
+                    <dt className="text-sm font-medium text-gray-500 truncate">Total Amount</dt>
                     <dd className="flex items-baseline">
                       <div className="text-2xl font-semibold text-gray-900">
                         {formatCurrency(totalAmount)}
@@ -327,9 +329,7 @@ const Dashboard: FC<DashboardProps> = () => {
                 </div>
                 <div className="ml-5 w-0 flex-1">
                   <dl>
-                    <dt className="text-sm font-medium text-gray-500 truncate">
-                      Avg. Risk Score
-                    </dt>
+                    <dt className="text-sm font-medium text-gray-500 truncate">Avg. Risk Score</dt>
                     <dd className="flex items-baseline">
                       <div className="text-2xl font-semibold text-gray-900">
                         {(avgRiskScore * 100).toFixed(1)}%
@@ -407,7 +407,9 @@ const Dashboard: FC<DashboardProps> = () => {
           <div className="bg-white shadow overflow-hidden sm:rounded-lg mt-6">
             {activeTab === 'overview' && (
               <div className="p-6">
-                <h2 className="text-lg font-medium text-gray-900 mb-4">Welcome back, {user?.name || 'User'}</h2>
+                <h2 className="text-lg font-medium text-gray-900 mb-4">
+                  Welcome back, {user?.name || 'User'}
+                </h2>
                 <div className="bg-blue-50 rounded-lg p-4 mb-6">
                   <div className="flex">
                     <div className="flex-shrink-0">
@@ -416,7 +418,10 @@ const Dashboard: FC<DashboardProps> = () => {
                     <div className="ml-3">
                       <h3 className="text-sm font-medium text-blue-800">Quick Start</h3>
                       <div className="mt-2 text-sm text-blue-700">
-                        <p>Use the tabs above to navigate between different sections. Analyze new transactions, view transaction history, or check customer risk profiles.</p>
+                        <p>
+                          Use the tabs above to navigate between different sections. Analyze new
+                          transactions, view transaction history, or check customer risk profiles.
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -445,9 +450,7 @@ const Dashboard: FC<DashboardProps> = () => {
                                 </p>
                               </div>
                               <div className="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
-                                <p className="font-medium">
-                                  {formatCurrency(transaction.amount)}
-                                </p>
+                                <p className="font-medium">{formatCurrency(transaction.amount)}</p>
                               </div>
                             </div>
                           </div>
@@ -465,14 +468,14 @@ const Dashboard: FC<DashboardProps> = () => {
                   <h2 className="text-lg font-medium text-gray-900">Transaction History</h2>
                   <div className="flex-shrink-0">
                     <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleLogout();
-                  }}
-                  className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-                >
-                  Sign out
-                </button>
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleLogout();
+                      }}
+                      className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                    >
+                      Sign out
+                    </button>
                     <button
                       type="button"
                       className="relative inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
@@ -489,19 +492,34 @@ const Dashboard: FC<DashboardProps> = () => {
                         <table className="min-w-full divide-y divide-gray-200">
                           <thead className="bg-gray-50">
                             <tr>
-                              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                              <th
+                                scope="col"
+                                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                              >
                                 Date
                               </th>
-                              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                              <th
+                                scope="col"
+                                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                              >
                                 Merchant
                               </th>
-                              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                              <th
+                                scope="col"
+                                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                              >
                                 Location
                               </th>
-                              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                              <th
+                                scope="col"
+                                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                              >
                                 Amount
                               </th>
-                              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                              <th
+                                scope="col"
+                                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                              >
                                 Risk Level
                               </th>
                               <th scope="col" className="relative px-6 py-3">
@@ -552,7 +570,9 @@ const Dashboard: FC<DashboardProps> = () => {
                 <div className="md:grid md:grid-cols-3 md:gap-6">
                   <div className="md:col-span-1">
                     <div className="px-4 sm:px-0">
-                      <h3 className="text-lg font-medium leading-6 text-gray-900">Transaction Analysis</h3>
+                      <h3 className="text-lg font-medium leading-6 text-gray-900">
+                        Transaction Analysis
+                      </h3>
                       <p className="mt-1 text-sm text-gray-600">
                         Analyze a new transaction for potential fraud and risk factors.
                       </p>

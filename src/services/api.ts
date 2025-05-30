@@ -1,4 +1,9 @@
-import axios, { AxiosInstance, InternalAxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
+import axios, {
+  AxiosInstance,
+  AxiosResponse,
+  AxiosError,
+  AxiosRequestHeaders
+} from 'axios';
 
 interface ErrorResponse {
   message: string;
@@ -6,14 +11,14 @@ interface ErrorResponse {
   errors?: Record<string, string[]>;
 }
 
-interface TransactionData {
+export interface TransactionData {
   amount: number;
   merchant: string;
   location: string;
   [key: string]: any;
 }
 
-interface RiskScoreData {
+export interface RiskScoreData {
   customerId: string;
   transactionHistory: any[];
   [key: string]: any;
@@ -23,12 +28,16 @@ export interface AnalysisResult {
   riskScore: number;
   riskLevel: 'Low' | 'Medium' | 'High';
   explanation: string;
+  confidence: number;
+  timestamp: string;
+  error?: string;
+  transactionId?: string;
+  customerId?: string;
   recommendedAction?: string;
-  confidence?: number;
   [key: string]: any;
 }
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
 
 const api: AxiosInstance = axios.create({
   baseURL: API_BASE_URL,
@@ -39,11 +48,14 @@ const api: AxiosInstance = axios.create({
 
 // Request interceptor to add auth token
 api.interceptors.request.use(
-  async (config: InternalAxiosRequestConfig) => {
+  (config) => {
     const token = localStorage.getItem('token');
     if (token) {
-      config.headers = config.headers || {};
-      config.headers.Authorization = `Bearer ${token}`;
+      // Create a new config object to avoid mutating the original
+      const newConfig = { ...config };
+      newConfig.headers = newConfig.headers || {} as AxiosRequestHeaders;
+      (newConfig.headers as any).Authorization = `Bearer ${token}`;
+      return newConfig;
     }
     return config;
   },
@@ -80,7 +92,9 @@ api.interceptors.response.use(
 );
 
 // AI Analysis Service
-export const analyzeTransaction = async (transactionData: TransactionData): Promise<AnalysisResult> => {
+export const analyzeTransaction = async (
+  transactionData: TransactionData
+): Promise<AnalysisResult> => {
   try {
     const response = await api.post('/analyze/transaction', transactionData);
     return response.data;

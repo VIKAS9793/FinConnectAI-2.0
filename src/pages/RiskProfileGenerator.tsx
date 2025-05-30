@@ -1,59 +1,68 @@
 import React, { useState } from 'react';
-import { Users, Download, Filter, RotateCcw, ArrowRight, Shield, TrendingUp, TrendingDown } from 'lucide-react';
+import {
+  Users,
+  Download,
+  Filter,
+  RotateCcw,
+  ArrowRight,
+  Shield,
+  TrendingUp,
+  TrendingDown,
+} from 'lucide-react';
 import ResultCard from '../components/ResultCard';
 import MobileSidebar from '../components/MobileSidebar';
 
 // Sample customer data
 const sampleCustomers = [
-  { 
-    id: 'C123456', 
-    name: 'John Smith', 
-    age: 42, 
-    income: 85000, 
-    occupation: 'Software Engineer', 
+  {
+    id: 'C123456',
+    name: 'John Smith',
+    age: 42,
+    income: 85000,
+    occupation: 'Software Engineer',
     creditScore: 740,
     location: 'Seattle, WA',
-    accountAge: 36 // months
+    accountAge: 36, // months
   },
-  { 
-    id: 'C123457', 
-    name: 'Maria Garcia', 
-    age: 29, 
-    income: 65000, 
-    occupation: 'Marketing Manager', 
+  {
+    id: 'C123457',
+    name: 'Maria Garcia',
+    age: 29,
+    income: 65000,
+    occupation: 'Marketing Manager',
     creditScore: 680,
     location: 'Austin, TX',
-    accountAge: 14 // months
+    accountAge: 14, // months
   },
-  { 
-    id: 'C123458', 
-    name: 'Robert Johnson', 
-    age: 56, 
-    income: 120000, 
-    occupation: 'Financial Advisor', 
+  {
+    id: 'C123458',
+    name: 'Robert Johnson',
+    age: 56,
+    income: 120000,
+    occupation: 'Financial Advisor',
     creditScore: 820,
     location: 'Chicago, IL',
-    accountAge: 84 // months
+    accountAge: 84, // months
   },
-  { 
-    id: 'C123459', 
-    name: 'Emily Wong', 
-    age: 33, 
-    income: 72000, 
-    occupation: 'Healthcare Professional', 
+  {
+    id: 'C123459',
+    name: 'Emily Wong',
+    age: 33,
+    income: 72000,
+    occupation: 'Healthcare Professional',
     creditScore: 710,
     location: 'Los Angeles, CA',
-    accountAge: 28 // months
+    accountAge: 28, // months
   },
-  { 
-    id: 'C123460', 
-    name: 'Daniel Brown', 
-    age: 38, 
-    income: 95000, 
-    occupation: 'Product Manager', 
+  {
+    id: 'C123460',
+    name: 'Daniel Brown',
+    age: 38,
+    income: 95000,
+    occupation: 'Product Manager',
     creditScore: 760,
     location: 'New York, NY',
-    accountAge: 42 // months
+    accountAge: 42, // months
   },
 ];
 
@@ -65,9 +74,10 @@ const sampleResults = [
     timestamp: '2025-05-10 13:15',
     result: {
       summary: 'Low risk profile (92% confidence)',
-      details: 'Customer profile analysis:\n- Strong credit history (score: 820)\n- Long-term customer (7+ years)\n- Stable income and occupation\n- Consistent payment behavior\n\nRecommendation: Eligible for premium services and higher credit limits.',
-      confidence: 92
-    }
+      details:
+        'Customer profile analysis:\n- Strong credit history (score: 820)\n- Long-term customer (7+ years)\n- Stable income and occupation\n- Consistent payment behavior\n\nRecommendation: Eligible for premium services and higher credit limits.',
+      confidence: 92,
+    },
   },
   {
     id: 2,
@@ -75,10 +85,11 @@ const sampleResults = [
     timestamp: '2025-05-08 10:08',
     result: {
       summary: 'Moderate risk profile (75% confidence)',
-      details: 'Customer profile analysis:\n- Average credit score (680)\n- Relatively new customer (14 months)\n- Income within expected range\n- Location has moderate fraud risk\n\nRecommendation: Standard monitoring procedures.',
-      confidence: 75
-    }
-  }
+      details:
+        'Customer profile analysis:\n- Average credit score (680)\n- Relatively new customer (14 months)\n- Income within expected range\n- Location has moderate fraud risk\n\nRecommendation: Standard monitoring procedures.',
+      confidence: 75,
+    },
+  },
 ];
 
 const RiskProfileGenerator = () => {
@@ -86,22 +97,22 @@ const RiskProfileGenerator = () => {
   const [additionalInfo, setAdditionalInfo] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState(sampleResults);
-  
+
   const handleGenerateProfile = () => {
     if (!selectedCustomer) return;
-    
+
     setIsLoading(true);
-    
+
     // Simulate API call
     setTimeout(() => {
       // Find the selected customer details
-      const customerDetails = sampleCustomers.find(c => c.id === selectedCustomer);
-      
+      const customerDetails = sampleCustomers.find((c) => c.id === selectedCustomer);
+
       if (customerDetails) {
         // Generate risk level based on credit score and account age
         let riskLevel = 'Moderate';
         let confidence = 75;
-        
+
         if (customerDetails.creditScore > 750 && customerDetails.accountAge > 36) {
           riskLevel = 'Low';
           confidence = 90 + Math.floor(Math.random() * 10);
@@ -109,7 +120,7 @@ const RiskProfileGenerator = () => {
           riskLevel = 'High';
           confidence = 60 + Math.floor(Math.random() * 20);
         }
-        
+
         const newResult = {
           id: Date.now(),
           title: `Risk Profile for ${customerDetails.id}`,
@@ -117,19 +128,19 @@ const RiskProfileGenerator = () => {
           result: {
             summary: `${riskLevel} risk profile (${confidence}% confidence)`,
             details: `Customer profile analysis:\n- Credit score: ${customerDetails.creditScore} (${customerDetails.creditScore > 750 ? 'Excellent' : customerDetails.creditScore > 700 ? 'Good' : customerDetails.creditScore > 650 ? 'Fair' : 'Poor'})\n- Account age: ${customerDetails.accountAge} months\n- Income: $${customerDetails.income.toLocaleString()}\n- Occupation: ${customerDetails.occupation}\n- Location: ${customerDetails.location}\n${additionalInfo ? `\nAdditional context:\n${additionalInfo}` : ''}`,
-            confidence
-          }
+            confidence,
+          },
         };
-        
+
         setResults([newResult, ...results]);
         setSelectedCustomer('');
         setAdditionalInfo('');
       }
-      
+
       setIsLoading(false);
     }, 2000);
   };
-  
+
   const handleFeedbackSubmit = (resultId: number, rating: number, feedback: string) => {
     console.log(`Feedback for result ${resultId}:`, { rating, feedback });
     // In a real app, this would send the feedback to an API
@@ -145,7 +156,7 @@ const RiskProfileGenerator = () => {
           </div>
           <h1 className="text-2xl font-bold text-gray-800">CRM Risk Profile Generator</h1>
         </div>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden">
@@ -153,10 +164,13 @@ const RiskProfileGenerator = () => {
                 <h2 className="text-lg font-semibold text-gray-800">Generate Risk Profile</h2>
                 <p className="text-sm text-gray-500 mt-1">Analyze a customer for risk assessment</p>
               </div>
-              
+
               <div className="p-5 space-y-4">
                 <div>
-                  <label htmlFor="customer" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="customer"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Select Customer
                   </label>
                   <select
@@ -173,11 +187,11 @@ const RiskProfileGenerator = () => {
                     ))}
                   </select>
                 </div>
-                
+
                 {selectedCustomer && (
                   <div className="bg-gray-50 p-3 rounded-md border border-gray-200 text-sm">
                     {(() => {
-                      const customer = sampleCustomers.find(c => c.id === selectedCustomer);
+                      const customer = sampleCustomers.find((c) => c.id === selectedCustomer);
                       return customer ? (
                         <div className="space-y-1">
                           <div className="flex justify-between">
@@ -209,9 +223,12 @@ const RiskProfileGenerator = () => {
                     })()}
                   </div>
                 )}
-                
+
                 <div>
-                  <label htmlFor="additionalInfo" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="additionalInfo"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Additional Information (Optional)
                   </label>
                   <textarea
@@ -223,7 +240,7 @@ const RiskProfileGenerator = () => {
                     onChange={(e) => setAdditionalInfo(e.target.value)}
                   ></textarea>
                 </div>
-                
+
                 <button
                   type="button"
                   className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
@@ -244,18 +261,18 @@ const RiskProfileGenerator = () => {
                 </button>
               </div>
             </div>
-            
+
             <div className="bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden mt-6">
               <div className="p-5 border-b border-gray-200 flex justify-between items-center">
                 <h2 className="text-lg font-semibold text-gray-800">Agent Information</h2>
               </div>
-              
+
               <div className="p-5 space-y-4">
                 <div>
                   <h3 className="text-sm font-medium text-gray-700">Pattern</h3>
                   <p className="text-sm text-gray-600 mt-1">Chain-of-Thought</p>
                 </div>
-                
+
                 <div>
                   <h3 className="text-sm font-medium text-gray-700">Tools</h3>
                   <ul className="list-disc list-inside text-sm text-gray-600 mt-1 space-y-1">
@@ -263,7 +280,7 @@ const RiskProfileGenerator = () => {
                     <li>CustomerProfileDB</li>
                   </ul>
                 </div>
-                
+
                 <div>
                   <h3 className="text-sm font-medium text-gray-700">Guardrails</h3>
                   <ul className="list-disc list-inside text-sm text-gray-600 mt-1 space-y-1">
@@ -271,7 +288,7 @@ const RiskProfileGenerator = () => {
                     <li>Retry-on-failure</li>
                   </ul>
                 </div>
-                
+
                 <div>
                   <h3 className="text-sm font-medium text-gray-700">Performance</h3>
                   <div className="flex items-center mt-1">
@@ -280,12 +297,14 @@ const RiskProfileGenerator = () => {
                     </div>
                     <span className="text-sm font-medium text-gray-700 ml-2">92%</span>
                   </div>
-                  <p className="text-xs text-gray-500 mt-1">Accuracy vs manual benchmark (F1 score: 0.81)</p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    Accuracy vs manual benchmark (F1 score: 0.81)
+                  </p>
                 </div>
               </div>
             </div>
           </div>
-          
+
           <div className="lg:col-span-2">
             <div className="bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden">
               <div className="p-5 border-b border-gray-200 flex justify-between items-center">
@@ -301,7 +320,7 @@ const RiskProfileGenerator = () => {
                   </button>
                 </div>
               </div>
-              
+
               <div className="p-5">
                 {results.length === 0 ? (
                   <div className="text-center py-6">
@@ -314,12 +333,12 @@ const RiskProfileGenerator = () => {
                 ) : (
                   <div className="space-y-4">
                     {results.map((result) => (
-                      <ResultCard 
+                      <ResultCard
                         key={result.id}
                         title={result.title}
                         timestamp={result.timestamp}
                         result={result.result}
-                        onFeedbackSubmit={(rating, feedback) => 
+                        onFeedbackSubmit={(rating, feedback) =>
                           handleFeedbackSubmit(result.id, rating, feedback)
                         }
                       />
@@ -328,13 +347,15 @@ const RiskProfileGenerator = () => {
                 )}
               </div>
             </div>
-            
+
             <div className="bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden mt-6">
               <div className="p-5 border-b border-gray-200">
                 <h2 className="text-lg font-semibold text-gray-800">Risk Distribution</h2>
-                <p className="text-sm text-gray-500 mt-1">Customer risk profile distribution across portfolio</p>
+                <p className="text-sm text-gray-500 mt-1">
+                  Customer risk profile distribution across portfolio
+                </p>
               </div>
-              
+
               <div className="p-5">
                 <div className="grid grid-cols-3 gap-4">
                   <div className="bg-green-50 rounded-lg p-4 border border-green-100">
@@ -347,11 +368,14 @@ const RiskProfileGenerator = () => {
                     </div>
                     <div className="mt-2">
                       <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-green-500 h-2 rounded-full" style={{ width: '58%' }}></div>
+                        <div
+                          className="bg-green-500 h-2 rounded-full"
+                          style={{ width: '58%' }}
+                        ></div>
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-100">
                     <div className="flex items-center justify-between">
                       <div>
@@ -362,11 +386,14 @@ const RiskProfileGenerator = () => {
                     </div>
                     <div className="mt-2">
                       <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-yellow-500 h-2 rounded-full" style={{ width: '32%' }}></div>
+                        <div
+                          className="bg-yellow-500 h-2 rounded-full"
+                          style={{ width: '32%' }}
+                        ></div>
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="bg-red-50 rounded-lg p-4 border border-red-100">
                     <div className="flex items-center justify-between">
                       <div>

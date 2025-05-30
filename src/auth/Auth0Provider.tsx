@@ -8,16 +8,16 @@ interface Auth0ProviderWithNavigateProps {
 
 export const Auth0ProviderWithNavigate = ({ children }: Auth0ProviderWithNavigateProps) => {
   const navigate = useNavigate();
-  // Using placeholder values for development
-  const domain = 'dev-xxxxx.us.auth0.com';
-  const clientId = 'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy';
-  const audience = 'https://api.finconnectai.com';
+  
+  // Get configuration from environment variables with fallbacks
+  const domain = import.meta.env.VITE_AUTH0_DOMAIN || 'dev-xxxxx.us.auth0.com';
+  const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID || 'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy';
+  const audience = import.meta.env.VITE_AUTH0_AUDIENCE || 'https://api.finconnectai.com';
 
   const onRedirectCallback = (appState: any) => {
     navigate(appState?.returnTo || window.location.pathname);
   };
 
-  // Always return the Auth0Provider with placeholder values for development
   return (
     <Auth0Provider
       domain={domain}
@@ -25,22 +25,7 @@ export const Auth0ProviderWithNavigate = ({ children }: Auth0ProviderWithNavigat
       authorizationParams={{
         redirect_uri: window.location.origin,
         audience: audience,
-        scope: 'read:current_user update:current_user_metadata'
-      }}
-      onRedirectCallback={onRedirectCallback}
-    >
-      {children}
-    </Auth0Provider>
-  );
-
-  return (
-    <Auth0Provider
-      domain={domain}
-      clientId={clientId}
-      authorizationParams={{
-        redirect_uri: window.location.origin,
-        audience: audience,
-        scope: 'read:current_user update:current_user_metadata'
+        scope: 'read:current_user update:current_user_metadata',
       }}
       onRedirectCallback={onRedirectCallback}
     >

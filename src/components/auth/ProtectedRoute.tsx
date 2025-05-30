@@ -23,7 +23,10 @@ export const ProtectedRoute = ({ children, roles = [] }: ProtectedRouteProps) =>
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
-  if (roles.length > 0 && !roles.some(role => user?.['https://finconnectai.com/roles']?.includes(role))) {
+  if (
+    roles.length > 0 &&
+    !roles.some((role) => user?.['https://finconnectai.com/roles']?.includes(role))
+  ) {
     return <Navigate to="/unauthorized" replace />;
   }
 

@@ -20,31 +20,46 @@ function App() {
           <Layout>
             <Routes>
               <Route path="/login" element={<Login />} />
-              <Route path="/" element={
-                <ProtectedRoute>
-                  <Dashboard />
-                </ProtectedRoute>
-              } />
-              <Route path="/fraud-explainer" element={
-                <ProtectedRoute>
-                  <FraudExplainer />
-                </ProtectedRoute>
-              } />
-              <Route path="/risk-profile" element={
-                <ProtectedRoute>
-                  <RiskProfileGenerator />
-                </ProtectedRoute>
-              } />
-              <Route path="/performance" element={
-                <ProtectedRoute>
-                  <Performance />
-                </ProtectedRoute>
-              } />
-              <Route path="/settings" element={
-                <ProtectedRoute>
-                  <Settings />
-                </ProtectedRoute>
-              } />
+              <Route
+                path="/"
+                element={
+                  <ProtectedRoute>
+                    <Dashboard />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/fraud-explainer"
+                element={
+                  <ProtectedRoute>
+                    <FraudExplainer />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/risk-profile"
+                element={
+                  <ProtectedRoute>
+                    <RiskProfileGenerator />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/performance"
+                element={
+                  <ProtectedRoute>
+                    <Performance />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/settings"
+                element={
+                  <ProtectedRoute>
+                    <Settings />
+                  </ProtectedRoute>
+                }
+              />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Layout>

@@ -28,18 +28,21 @@ export const useAIService = () => {
   const [error, setError] = useState<string | null>(null);
   const { getAccessToken } = useAuth();
 
-  const analyzeTransaction = async (transactionData: Omit<TransactionData, 'id' | 'status' | 'riskScore' | 'riskLevel'>): Promise<AnalysisResult> => {
+  const analyzeTransaction = async (
+    transactionData: Omit<TransactionData, 'id' | 'status' | 'riskScore' | 'riskLevel'>
+  ): Promise<AnalysisResult> => {
     setIsLoading(true);
     setError(null);
     try {
       const token = await getAccessToken();
-      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/analyze/transaction`, {
+      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
+      const response = await fetch(`${apiBaseUrl}/analyze/transaction`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(transactionData)
+        body: JSON.stringify(transactionData),
       });
 
       if (!response.ok) {
@@ -62,13 +65,14 @@ export const useAIService = () => {
     setError(null);
     try {
       const token = await getAccessToken();
-      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/analyze/risk-score`, {
+      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
+      const response = await fetch(`${apiBaseUrl}/analyze/risk-score`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(riskData)
+        body: JSON.stringify(riskData),
       });
 
       if (!response.ok) {
@@ -80,13 +84,13 @@ export const useAIService = () => {
       const errorMessage = err instanceof Error ? err.message : 'Failed to get risk assessment';
       console.error('Error getting risk assessment:', errorMessage);
       setError(errorMessage);
-      
+
       // Return a default risk assessment in case of error
       return {
         riskScore: 0.5,
         riskLevel: 'Medium' as const,
         explanation: 'Using default risk assessment due to server error',
-        isFallback: true
+        isFallback: true,
       };
     } finally {
       setIsLoading(false);
@@ -97,6 +101,6 @@ export const useAIService = () => {
     analyzeTransaction,
     getRiskAssessment,
     isLoading,
-    error
+    error,
   };
 };

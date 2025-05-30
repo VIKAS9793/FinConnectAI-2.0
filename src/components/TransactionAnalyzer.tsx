@@ -37,15 +37,15 @@ const TransactionAnalyzer: FC<TransactionAnalyzerProps> = ({
   onAnalysisComplete = () => {},
   className = '',
   initialTransaction = { amount: '', merchant: '', location: '' },
-  showHistory = true
+  showHistory = true,
 }) => {
   // State
   const [transaction, setTransaction] = useState<TransactionInput>({
     amount: initialTransaction.amount || '',
     merchant: initialTransaction.merchant || '',
-    location: initialTransaction.location || ''
+    location: initialTransaction.location || '',
   });
-  
+
   const { analyzeTransaction, isLoading } = useAIService();
   const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(null);
   const [showAnalysisResults, setShowAnalysisResults] = useState(false);
@@ -53,40 +53,43 @@ const TransactionAnalyzer: FC<TransactionAnalyzerProps> = ({
   const [error, setError] = useState<string | null>(null);
 
   // Handlers
-  const handleSubmit = useCallback(async (e: FormEvent) => {
-    e.preventDefault();
-    if (isLoading) return;
-    setError(null);
+  const handleSubmit = useCallback(
+    async (e: FormEvent) => {
+      e.preventDefault();
+      if (isLoading) return;
+      setError(null);
 
-    try {
-      const result = await analyzeTransaction(transaction);
-      setAnalysisResult(result);
-      onAnalysisComplete(result);
-      setShowAnalysisResults(true);
-      
-      // Add to history
-      setTransactionHistory(prev => [
-        {
-          ...transaction,
-          id: Date.now(),
-          date: new Date().toISOString(),
-          riskScore: result.riskScore,
-          riskLevel: result.riskLevel
-        },
-        ...prev
-      ]);
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Failed to analyze transaction';
-      setError(errorMessage);
-      console.error('Analysis failed:', errorMessage);
-    }
-  }, [transaction, analyzeTransaction, isLoading, onAnalysisComplete]);
+      try {
+        const result = await analyzeTransaction(transaction);
+        setAnalysisResult(result);
+        onAnalysisComplete(result);
+        setShowAnalysisResults(true);
+
+        // Add to history
+        setTransactionHistory((prev) => [
+          {
+            ...transaction,
+            id: Date.now(),
+            date: new Date().toISOString(),
+            riskScore: result.riskScore,
+            riskLevel: result.riskLevel,
+          },
+          ...prev,
+        ]);
+      } catch (err) {
+        const errorMessage = err instanceof Error ? err.message : 'Failed to analyze transaction';
+        setError(errorMessage);
+        console.error('Analysis failed:', errorMessage);
+      }
+    },
+    [transaction, analyzeTransaction, isLoading, onAnalysisComplete]
+  );
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setTransaction(prev => ({
+    setTransaction((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -94,11 +97,11 @@ const TransactionAnalyzer: FC<TransactionAnalyzerProps> = ({
     setShowAnalysisResults(false);
     setError(null);
   };
-  
+
   // Load sample transaction history for demo purposes
   useEffect(() => {
     if (!showHistory) return;
-    
+
     const history: Transaction[] = [
       {
         id: 1,
@@ -108,7 +111,7 @@ const TransactionAnalyzer: FC<TransactionAnalyzerProps> = ({
         date: '2023-05-15',
         status: 'Completed',
         riskScore: 15,
-        riskLevel: 'Low'
+        riskLevel: 'Low',
       },
       {
         id: 2,
@@ -118,7 +121,7 @@ const TransactionAnalyzer: FC<TransactionAnalyzerProps> = ({
         date: '2023-05-14',
         status: 'Completed',
         riskScore: 35,
-        riskLevel: 'Medium'
+        riskLevel: 'Medium',
       },
       {
         id: 3,
@@ -128,17 +131,17 @@ const TransactionAnalyzer: FC<TransactionAnalyzerProps> = ({
         date: '2023-05-12',
         status: 'Completed',
         riskScore: 75,
-        riskLevel: 'High'
-      }
+        riskLevel: 'High',
+      },
     ];
-    
+
     setTransactionHistory(history);
   }, [showHistory]);
 
   const formatCurrency = (amount: string): string => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
-      currency: 'USD'
+      currency: 'USD',
     }).format(parseFloat(amount) || 0);
   };
 
@@ -150,10 +153,15 @@ const TransactionAnalyzer: FC<TransactionAnalyzerProps> = ({
           <div className="grid grid-cols-2 gap-4">
             <div>
               <p className="text-sm font-medium text-gray-500">Risk Level</p>
-              <p className={`text-lg font-semibold ${
-                analysisResult.riskLevel === 'High' ? 'text-red-600' :
-                analysisResult.riskLevel === 'Medium' ? 'text-yellow-600' : 'text-green-600'
-              }`}>
+              <p
+                className={`text-lg font-semibold ${
+                  analysisResult.riskLevel === 'High'
+                    ? 'text-red-600'
+                    : analysisResult.riskLevel === 'Medium'
+                      ? 'text-yellow-600'
+                      : 'text-green-600'
+                }`}
+              >
                 {analysisResult.riskLevel}
               </p>
             </div>
@@ -162,19 +170,19 @@ const TransactionAnalyzer: FC<TransactionAnalyzerProps> = ({
               <p className="text-lg font-semibold">{analysisResult.riskScore}</p>
             </div>
           </div>
-          
+
           {analysisResult.recommendedAction && (
             <div>
               <p className="text-sm font-medium text-gray-500">Recommended Action</p>
               <p className="text-sm">{analysisResult.recommendedAction}</p>
             </div>
           )}
-          
+
           <div>
             <p className="text-sm font-medium text-gray-500">Explanation</p>
             <p className="text-sm">{analysisResult.explanation}</p>
           </div>
-          
+
           <button
             onClick={handleNewAnalysis}
             className="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
@@ -189,7 +197,7 @@ const TransactionAnalyzer: FC<TransactionAnalyzerProps> = ({
   return (
     <div className={`bg-white p-6 rounded-lg shadow-md ${className}`}>
       <h2 className="text-xl font-semibold mb-4">Analyze Transaction</h2>
-      
+
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label htmlFor="amount" className="block text-sm font-medium text-gray-700">
@@ -208,7 +216,7 @@ const TransactionAnalyzer: FC<TransactionAnalyzerProps> = ({
             required
           />
         </div>
-        
+
         <div>
           <label htmlFor="merchant" className="block text-sm font-medium text-gray-700">
             Merchant
@@ -224,7 +232,7 @@ const TransactionAnalyzer: FC<TransactionAnalyzerProps> = ({
             required
           />
         </div>
-        
+
         <div>
           <label htmlFor="location" className="block text-sm font-medium text-gray-700">
             Location
@@ -240,13 +248,9 @@ const TransactionAnalyzer: FC<TransactionAnalyzerProps> = ({
             required
           />
         </div>
-        
-        {error && (
-          <div className="p-3 text-sm text-red-700 bg-red-100 rounded-md">
-            {error}
-          </div>
-        )}
-        
+
+        {error && <div className="p-3 text-sm text-red-700 bg-red-100 rounded-md">{error}</div>}
+
         <div className="flex justify-end">
           <button
             type="submit"
@@ -257,7 +261,7 @@ const TransactionAnalyzer: FC<TransactionAnalyzerProps> = ({
           </button>
         </div>
       </form>
-      
+
       {showHistory && transactionHistory.length > 0 && (
         <div className="mt-8">
           <h3 className="text-lg font-medium text-gray-900 mb-2">Recent Transactions</h3>
@@ -265,19 +269,34 @@ const TransactionAnalyzer: FC<TransactionAnalyzerProps> = ({
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
                     Date
                   </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
                     Merchant
                   </th>
-                  <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
                     Amount
                   </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
                     Status
                   </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
                     Risk
                   </th>
                 </tr>
@@ -301,11 +320,15 @@ const TransactionAnalyzer: FC<TransactionAnalyzerProps> = ({
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                        txn.riskLevel === 'High' ? 'bg-red-100 text-red-800' :
-                        txn.riskLevel === 'Medium' ? 'bg-yellow-100 text-yellow-800' :
-                        'bg-green-100 text-green-800'
-                      }`}>
+                      <span
+                        className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                          txn.riskLevel === 'High'
+                            ? 'bg-red-100 text-red-800'
+                            : txn.riskLevel === 'Medium'
+                              ? 'bg-yellow-100 text-yellow-800'
+                              : 'bg-green-100 text-green-800'
+                        }`}
+                      >
                         {txn.riskLevel || 'N/A'}
                       </span>
                     </td>

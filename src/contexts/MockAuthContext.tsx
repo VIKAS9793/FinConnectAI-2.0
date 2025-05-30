@@ -30,27 +30,27 @@ export const MockAuthProvider = ({ children }: MockAuthProviderProps) => {
         email: 'vikas.sahani@finconnectai.com',
         name: 'Vikas Sahani',
         sub: 'auth0|1234567890',
-        ['https://finconnectai.com/roles']: ['user', 'admin']
+        ['https://finconnectai.com/roles']: ['user', 'admin'],
       });
     }, 1000);
   }, []);
 
   const login = async (): Promise<void> => {
     setIsLoading(true);
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     setIsLoading(false);
     setIsAuthenticated(true);
     setUser({
       email: 'vikas.sahani@finconnectai.com',
       name: 'Vikas Sahani',
       sub: 'auth0|1234567890',
-      ['https://finconnectai.com/roles']: ['user', 'admin']
+      ['https://finconnectai.com/roles']: ['user', 'admin'],
     });
   };
 
   const logout = async () => {
     setIsLoading(true);
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     setIsAuthenticated(false);
     setUser(undefined);
     setIsLoading(false);
@@ -68,7 +68,7 @@ export const MockAuthProvider = ({ children }: MockAuthProviderProps) => {
         isLoading,
         login,
         logout,
-        getToken
+        getToken,
       }}
     >
       {children}

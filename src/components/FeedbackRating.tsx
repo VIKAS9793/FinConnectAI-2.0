@@ -7,24 +7,24 @@ interface FeedbackRatingProps {
   disabled?: boolean;
 }
 
-const FeedbackRating: React.FC<FeedbackRatingProps> = ({ 
-  initialRating = 0, 
+const FeedbackRating: React.FC<FeedbackRatingProps> = ({
+  initialRating = 0,
   onRatingChange,
-  disabled = false
+  disabled = false,
 }) => {
   const [rating, setRating] = useState(initialRating);
   const [hoverRating, setHoverRating] = useState(0);
-  
+
   const handleRatingClick = (newRating: number) => {
     if (disabled) return;
     setRating(newRating);
     onRatingChange(newRating);
   };
-  
+
   return (
     <div className="flex items-center space-x-1">
       {[1, 2, 3, 4, 5].map((star) => (
-        <button 
+        <button
           key={star}
           type="button"
           disabled={disabled}
@@ -33,12 +33,10 @@ const FeedbackRating: React.FC<FeedbackRatingProps> = ({
           onMouseLeave={() => !disabled && setHoverRating(0)}
           onClick={() => handleRatingClick(star)}
         >
-          <Star 
+          <Star
             className={`h-6 w-6 ${
-              (hoverRating || rating) >= star 
-                ? 'text-yellow-400 fill-yellow-400' 
-                : 'text-gray-300'
-            }`} 
+              (hoverRating || rating) >= star ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'
+            }`}
           />
         </button>
       ))}

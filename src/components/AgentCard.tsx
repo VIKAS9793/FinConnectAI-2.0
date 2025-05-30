@@ -15,16 +15,9 @@ interface AgentCardProps {
   path: string;
 }
 
-const AgentCard: React.FC<AgentCardProps> = ({ 
-  title, 
-  description, 
-  icon, 
-  stats, 
-  status,
-  path
-}) => {
+const AgentCard: React.FC<AgentCardProps> = ({ title, description, icon, stats, status, path }) => {
   const navigate = useNavigate();
-  
+
   const getStatusColor = () => {
     switch (status) {
       case 'online':
@@ -37,7 +30,7 @@ const AgentCard: React.FC<AgentCardProps> = ({
         return 'bg-gray-400';
     }
   };
-  
+
   const getStatusText = () => {
     switch (status) {
       case 'online':
@@ -56,9 +49,7 @@ const AgentCard: React.FC<AgentCardProps> = ({
       <div className="p-5">
         <div className="flex justify-between items-start">
           <div className="flex items-center space-x-3">
-            <div className="p-2 bg-blue-100 rounded-lg text-blue-700">
-              {icon}
-            </div>
+            <div className="p-2 bg-blue-100 rounded-lg text-blue-700">{icon}</div>
             <div>
               <h3 className="text-lg font-semibold text-gray-800">{title}</h3>
               <div className="flex items-center mt-1">
@@ -68,7 +59,7 @@ const AgentCard: React.FC<AgentCardProps> = ({
             </div>
           </div>
           <div className="flex space-x-2">
-            <button 
+            <button
               onClick={() => navigate(path)}
               className="text-sm text-blue-600 hover:text-blue-800 flex items-center space-x-1 font-medium"
             >
@@ -77,9 +68,9 @@ const AgentCard: React.FC<AgentCardProps> = ({
             </button>
           </div>
         </div>
-        
+
         <p className="mt-3 text-sm text-gray-600">{description}</p>
-        
+
         <div className="mt-4 grid grid-cols-3 gap-4 border-t border-gray-100 pt-4">
           <div className="text-center">
             <p className="text-xs text-gray-500 mb-1 flex items-center justify-center">

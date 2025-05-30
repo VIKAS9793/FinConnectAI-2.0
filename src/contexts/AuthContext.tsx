@@ -20,7 +20,7 @@ interface AuthProviderProps {
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const { isAuthenticated, user, isLoading, login, logout, getToken } = useMockAuth();
 
-// Using mock auth functions directly
+  // Using mock auth functions directly
   const getAccessToken = getToken;
 
   return (
@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         user,
         isAuthenticated,
         isLoading,
-        getAccessToken
+        getAccessToken,
       }}
     >
       {children}

@@ -12,9 +12,9 @@ const Sidebar = () => {
         <p className="text-blue-300 text-xs mt-1">AI Agents Platform</p>
       </div>
       <nav className="mt-6">
-        <NavLink 
-          to="/" 
-          className={({ isActive }) => 
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
             `flex items-center py-3 px-6 hover:bg-blue-800 transition-colors ${isActive ? 'bg-blue-800 border-l-4 border-blue-300' : ''}`
           }
           end
@@ -25,18 +25,18 @@ const Sidebar = () => {
         <div className="px-6 pt-6 pb-2">
           <h2 className="text-xs uppercase tracking-wide text-blue-300 font-semibold">Agents</h2>
         </div>
-        <NavLink 
-          to="/fraud-explainer" 
-          className={({ isActive }) => 
+        <NavLink
+          to="/fraud-explainer"
+          className={({ isActive }) =>
             `flex items-center py-3 px-6 hover:bg-blue-800 transition-colors ${isActive ? 'bg-blue-800 border-l-4 border-blue-300' : ''}`
           }
         >
           <AlertTriangle className="h-5 w-5 mr-3" />
           <span>Fraud Explainer</span>
         </NavLink>
-        <NavLink 
-          to="/risk-profile" 
-          className={({ isActive }) => 
+        <NavLink
+          to="/risk-profile"
+          className={({ isActive }) =>
             `flex items-center py-3 px-6 hover:bg-blue-800 transition-colors ${isActive ? 'bg-blue-800 border-l-4 border-blue-300' : ''}`
           }
         >
@@ -46,9 +46,9 @@ const Sidebar = () => {
         <div className="px-6 pt-6 pb-2">
           <h2 className="text-xs uppercase tracking-wide text-blue-300 font-semibold">Analytics</h2>
         </div>
-        <NavLink 
-          to="/performance" 
-          className={({ isActive }) => 
+        <NavLink
+          to="/performance"
+          className={({ isActive }) =>
             `flex items-center py-3 px-6 hover:bg-blue-800 transition-colors ${isActive ? 'bg-blue-800 border-l-4 border-blue-300' : ''}`
           }
         >
@@ -58,9 +58,9 @@ const Sidebar = () => {
         <div className="px-6 pt-6 pb-2">
           <h2 className="text-xs uppercase tracking-wide text-blue-300 font-semibold">Settings</h2>
         </div>
-        <NavLink 
-          to="/settings" 
-          className={({ isActive }) => 
+        <NavLink
+          to="/settings"
+          className={({ isActive }) =>
             `flex items-center py-3 px-6 hover:bg-blue-800 transition-colors ${isActive ? 'bg-blue-800 border-l-4 border-blue-300' : ''}`
           }
         >
@@ -68,7 +68,7 @@ const Sidebar = () => {
           <span>Configuration</span>
         </NavLink>
       </nav>
-      
+
       <div className="absolute bottom-0 w-64 bg-blue-950 p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">

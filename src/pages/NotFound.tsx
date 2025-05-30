@@ -10,7 +10,9 @@ const NotFound = () => {
           <AlertCircle className="h-20 w-20 text-red-500" />
         </div>
         <h1 className="mt-6 text-3xl font-bold text-gray-900">Page Not Found</h1>
-        <p className="mt-3 text-gray-500">The page you're looking for doesn't exist or has been moved.</p>
+        <p className="mt-3 text-gray-500">
+          The page you're looking for doesn't exist or has been moved.
+        </p>
         <div className="mt-6">
           <Link
             to="/"
