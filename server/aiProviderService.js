@@ -1,19 +1,42 @@
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 const OpenAI = require('openai');
+const { pipeline } = require('@xenova/transformers');
+const tf = require('@tensorflow/tfjs-node');
+const Redis = require('ioredis');
+const winston = require('winston');
+
+// Configure Winston logger
+const logger = winston.createLogger({
+  level: 'info',
+  format: winston.format.combine(
+    winston.format.timestamp(),
+    winston.format.json()
+  ),
+  transports: [
+    new winston.transports.File({ filename: 'error.log', level: 'error' }),
+    new winston.transports.File({ filename: 'combined.log' })
+  ]
+});
+
+if (process.env.NODE_ENV !== 'production') {
+  logger.add(new winston.transports.Console({
+    format: winston.format.simple()
+  }));
+}
 
 class AIProviderService {
   constructor() {
-    this.provider = process.env.AI_PROVIDER || 'google';
+    this.provider = process.env.AI_PROVIDER || 'offline';
     this.initProviders();
+    this.initCache();
+    this.initOfflineModels();
   }
 
-  initProviders() {
-    // Initialize Google AI
+  async initProviders() {
     if (process.env.GOOGLE_AI_KEY) {
       this.googleAI = new GoogleGenerativeAI(process.env.GOOGLE_AI_KEY);
     }
 
-    // Initialize OpenAI
     if (process.env.OPENAI_API_KEY) {
       this.openai = new OpenAI({
         apiKey: process.env.OPENAI_API_KEY,
@@ -21,84 +44,197 @@ class AIProviderService {
     }
   }
 
-  async analyzeWithGoogle(prompt) {
+  async initCache() {
     try {
-      const model = this.googleAI.getGenerativeModel({ model: 'gemini-pro' });
-      const result = await model.generateContent(prompt);
-      const response = await result.response;
+      this.cache = new Redis({
+        host: process.env.REDIS_HOST || 'localhost',
+        port: parseInt(process.env.REDIS_PORT || '6379'),
+        retryStrategy: (times) => Math.min(times * 50, 2000)
+      });
+
+      this.cache.on('error', (err) => {
+        logger.error('Redis Cache Error:', err);
+      });
+    } catch (error) {
+      logger.error('Failed to initialize Redis cache:', error);
+    }
+  }
+
+  async initOfflineModels() {
+    try {
+      // Initialize offline models
+      this.classifier = await pipeline('text-classification', 'Xenova/distilbert-base-uncased-finetuned-sst-2-english');
+      
+      // Load TensorFlow model for fraud detection
+      this.fraudModel = await tf.loadLayersModel('file://./models/fraud-detection/model.json');
+      
+      logger.info('Offline models initialized successfully');
+    } catch (error) {
+      logger.error('Failed to initialize offline models:', error);
+    }
+  }
+
+  async analyzeWithOfflineModels(data) {
+    try {
+      // Use TensorFlow.js for numerical analysis
+      const features = this.preprocessData(data);
+      const tensorInput = tf.tensor2d([features]);
+      const fraudPrediction = this.fraudModel.predict(tensorInput);
+      const riskScore = await fraudPrediction.data();
+
+      // Use Transformers.js for text analysis
+      const textAnalysis = await this.classifier(data.description || '');
+      
       return {
-        provider: 'google',
-        content: response.text(),
-        model: 'gemini-pro'
+        provider: 'offline',
+        content: JSON.stringify({
+          riskScore: riskScore[0],
+          riskLevel: this.getRiskLevel(riskScore[0]),
+          confidence: textAnalysis[0].score,
+          explanation: `Risk analysis based on offline models. Confidence: ${(textAnalysis[0].score * 100).toFixed(1)}%`
+        }),
+        model: 'hybrid-offline'
       };
     } catch (error) {
-      console.error('Google AI Error:', error);
+      logger.error('Offline analysis error:', error);
       throw error;
     }
   }
 
-  async analyzeWithOpenAI(prompt) {
+  preprocessData(data) {
+    // Convert transaction data to numerical features
+    return [
+      parseFloat(data.amount) || 0,
+      this.getLocationRiskScore(data.location),
+      this.getMerchantRiskScore(data.merchant),
+      // Add more features as needed
+    ];
+  }
+
+  getLocationRiskScore(location) {
+    // Implement location-based risk scoring
+    return location.toLowerCase().includes('high risk') ? 0.8 : 0.2;
+  }
+
+  getMerchantRiskScore(merchant) {
+    // Implement merchant-based risk scoring
+    return merchant.toLowerCase().includes('suspicious') ? 0.9 : 0.1;
+  }
+
+  getRiskLevel(score) {
+    if (score < 0.3) return 'Low';
+    if (score < 0.7) return 'Medium';
+    return 'High';
+  }
+
+  async analyzeWithCache(key, analysisFunction) {
     try {
-      const completion = await this.openai.chat.completions.create({
-        model: process.env.OPENAI_MODEL || 'gpt-4',
-        messages: [
-          { role: 'system', content: 'You are a helpful assistant that analyzes financial transactions.' },
-          { role: 'user', content: prompt }
-        ],
-      });
+      if (this.cache) {
+        const cached = await this.cache.get(key);
+        if (cached) {
+          logger.info('Cache hit for key:', key);
+          return JSON.parse(cached);
+        }
+      }
+
+      const result = await analysisFunction();
       
-      return {
-        provider: 'openai',
-        content: completion.choices[0]?.message?.content || 'No content',
-        model: process.env.OPENAI_MODEL || 'gpt-4'
-      };
+      if (this.cache) {
+        await this.cache.setex(key, 3600, JSON.stringify(result)); // Cache for 1 hour
+      }
+
+      return result;
     } catch (error) {
-      console.error('OpenAI Error:', error);
-      throw error;
+      logger.error('Cache operation failed:', error);
+      return await analysisFunction();
     }
   }
 
   async analyzeTransaction(transactionData) {
-    const prompt = `Analyze this financial transaction for potential fraud risk:
-    - Amount: $${transactionData.amount}
-    - Merchant: ${transactionData.merchant}
-    - Location: ${transactionData.location}`;
-
+    const cacheKey = `transaction:${JSON.stringify(transactionData)}`;
+    
     try {
-      // If hybrid mode, try both providers and return the first successful response
-      if (this.provider === 'hybrid') {
+      return await this.analyzeWithCache(cacheKey, async () => {
+        // Try offline models first
         try {
-          const result = await this.analyzeWithGoogle(prompt);
-          console.log('Used Google AI for analysis');
-          return result;
-        } catch (googleError) {
-          console.log('Google AI failed, falling back to OpenAI');
-          const result = await this.analyzeWithOpenAI(prompt);
-          console.log('Used OpenAI for analysis');
-          return result;
+          return await this.analyzeWithOfflineModels(transactionData);
+        } catch (offlineError) {
+          logger.warn('Offline analysis failed, falling back to online providers:', offlineError);
+          
+          // Fallback to online providers
+          if (this.provider === 'hybrid') {
+            try {
+              return await this.analyzeWithGoogle(JSON.stringify(transactionData));
+            } catch (googleError) {
+              logger.warn('Google AI failed, falling back to OpenAI:', googleError);
+              return await this.analyzeWithOpenAI(JSON.stringify(transactionData));
+            }
+          }
+          
+          if (this.provider === 'google') {
+            return await this.analyzeWithGoogle(JSON.stringify(transactionData));
+          } else if (this.provider === 'openai') {
+            return await this.analyzeWithOpenAI(JSON.stringify(transactionData));
+          }
+          
+          throw new Error('No valid AI provider available');
         }
-      }
-      
-      // Use specific provider based on configuration
-      if (this.provider === 'google') {
-        return await this.analyzeWithGoogle(prompt);
-      } else if (this.provider === 'openai') {
-        return await this.analyzeWithOpenAI(prompt);
-      }
-      
-      throw new Error('No valid AI provider configured');
+      });
     } catch (error) {
-      console.error('AI Analysis Error:', error);
+      logger.error('AI Analysis Error:', error);
       throw new Error('Failed to analyze transaction with AI services');
     }
   }
 
   async analyzeRiskProfile(customerId, transactionHistory = []) {
+    const cacheKey = `risk:${customerId}:${transactionHistory.length}`;
+    
+    const analysisFunction = async () => {
+      try {
+        // Try offline analysis first
+        return await this.analyzeWithOfflineModels({
+          customerId,
+          transactionHistory,
+          description: `Customer ${customerId} with ${transactionHistory.length} transactions`
+        });
+      } catch (offlineError) {
+        logger.warn('Offline risk analysis failed, falling back to online providers:', offlineError);
+        
+        const prompt = this.buildRiskProfilePrompt(customerId, transactionHistory);
+        
+        if (this.provider === 'hybrid') {
+          try {
+            return await this.analyzeWithGoogle(prompt);
+          } catch (googleError) {
+            logger.warn('Google AI failed for risk profile, falling back to OpenAI:', googleError);
+            return await this.analyzeWithOpenAI(prompt);
+          }
+        }
+        
+        if (this.provider === 'google') {
+          return await this.analyzeWithGoogle(prompt);
+        } else if (this.provider === 'openai') {
+          return await this.analyzeWithOpenAI(prompt);
+        }
+        
+        throw new Error('No valid AI provider available');
+      }
+    };
+
+    try {
+      return await this.analyzeWithCache(cacheKey, analysisFunction);
+    } catch (error) {
+      logger.error('Risk Profile Analysis Error:', error);
+      throw new Error('Failed to analyze risk profile');
+    }
+  }
+
+  buildRiskProfilePrompt(customerId, transactionHistory) {
     const transactionSummary = transactionHistory.length > 0 
       ? `Customer has ${transactionHistory.length} transactions with an average amount of $${(transactionHistory.reduce((sum, t) => sum + (parseFloat(t.amount) || 0), 0) / transactionHistory.length).toFixed(2)}`
       : 'No transaction history available';
 
-    const prompt = `Analyze this customer's risk profile:
+    return `Analyze this customer's risk profile:
     - Customer ID: ${customerId}
     - Transaction History: ${transactionSummary}
     
@@ -118,34 +254,6 @@ class AIProviderService {
       "factors": Array<{name: string, value: string, impact: number}>,
       "recommendations": string[]
     }`;
-
-    try {
-      // If hybrid mode, try both providers and return the first successful response
-      if (this.provider === 'hybrid') {
-        try {
-          const result = await this.analyzeWithGoogle(prompt);
-          console.log('Used Google AI for risk profile analysis');
-          return result;
-        } catch (googleError) {
-          console.log('Google AI failed, falling back to OpenAI');
-          const result = await this.analyzeWithOpenAI(prompt);
-          console.log('Used OpenAI for risk profile analysis');
-          return result;
-        }
-      }
-      
-      // Use specific provider based on configuration
-      if (this.provider === 'google') {
-        return await this.analyzeWithGoogle(prompt);
-      } else if (this.provider === 'openai') {
-        return await this.analyzeWithOpenAI(prompt);
-      }
-      
-      throw new Error('No valid AI provider configured');
-    } catch (error) {
-      console.error('AI Risk Profile Analysis Error:', error);
-      throw new Error('Failed to analyze risk profile with AI services');
-    }
   }
 }
 
