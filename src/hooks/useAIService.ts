@@ -29,11 +29,7 @@ export const useAIService = () => {
   const { getAccessToken } = useAuth();
 
   const getApiBaseUrl = () => {
-    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
-    if (window.location.protocol === 'https:' && apiBaseUrl.startsWith('http:')) {
-      return apiBaseUrl.replace('http:', 'https:');
-    }
-    return apiBaseUrl;
+    return import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
   };
 
   const analyzeTransaction = async (
