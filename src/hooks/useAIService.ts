@@ -28,10 +28,8 @@ export const useAIService = () => {
   const [error, setError] = useState<string | null>(null);
   const { getAccessToken } = useAuth();
 
-  // Helper function to ensure consistent protocol usage
   const getApiBaseUrl = () => {
     const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
-    // If we're on HTTPS, ensure API URL uses HTTPS too
     if (window.location.protocol === 'https:' && apiBaseUrl.startsWith('http:')) {
       return apiBaseUrl.replace('http:', 'https:');
     }
@@ -93,7 +91,6 @@ export const useAIService = () => {
       console.error('Error getting risk assessment:', errorMessage);
       setError(errorMessage);
 
-      // Return a default risk assessment in case of error
       return {
         riskScore: 0.5,
         riskLevel: 'Medium' as const,

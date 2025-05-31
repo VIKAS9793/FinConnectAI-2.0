@@ -37,7 +37,6 @@ export interface AnalysisResult {
   [key: string]: any;
 }
 
-// Use import.meta.env for Vite environment variables
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001/api';
 
 const api: AxiosInstance = axios.create({
@@ -45,12 +44,10 @@ const api: AxiosInstance = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  // Add timeout and error handling
   timeout: 10000,
   validateStatus: (status) => status >= 200 && status < 500,
 });
 
-// Request interceptor to add auth token
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
@@ -65,7 +62,6 @@ api.interceptors.request.use(
   (error: AxiosError) => Promise.reject(error)
 );
 
-// Response interceptor for error handling
 api.interceptors.response.use(
   (response: AxiosResponse) => response,
   (error: AxiosError<ErrorResponse>) => {
@@ -90,7 +86,6 @@ api.interceptors.response.use(
   }
 );
 
-// AI Analysis Service
 export const analyzeTransaction = async (
   transactionData: TransactionData
 ): Promise<AnalysisResult> => {
@@ -103,7 +98,6 @@ export const analyzeTransaction = async (
   }
 };
 
-// Risk Scoring Service
 export const generateRiskScore = async (customerData: RiskScoreData): Promise<AnalysisResult> => {
   try {
     const response = await api.post('/analyze/risk-score', customerData);
