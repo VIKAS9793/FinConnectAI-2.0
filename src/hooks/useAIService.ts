@@ -28,6 +28,16 @@ export const useAIService = () => {
   const [error, setError] = useState<string | null>(null);
   const { getAccessToken } = useAuth();
 
+  // Helper function to ensure consistent protocol usage
+  const getApiBaseUrl = () => {
+    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
+    // If we're on HTTPS, ensure API URL uses HTTPS too
+    if (window.location.protocol === 'https:' && apiBaseUrl.startsWith('http:')) {
+      return apiBaseUrl.replace('http:', 'https:');
+    }
+    return apiBaseUrl;
+  };
+
   const analyzeTransaction = async (
     transactionData: Omit<TransactionData, 'id' | 'status' | 'riskScore' | 'riskLevel'>
   ): Promise<AnalysisResult> => {
@@ -35,8 +45,7 @@ export const useAIService = () => {
     setError(null);
     try {
       const token = await getAccessToken();
-      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
-      const response = await fetch(`${apiBaseUrl}/analyze/transaction`, {
+      const response = await fetch(`${getApiBaseUrl()}/analyze/transaction`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -65,8 +74,7 @@ export const useAIService = () => {
     setError(null);
     try {
       const token = await getAccessToken();
-      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
-      const response = await fetch(`${apiBaseUrl}/analyze/risk-score`, {
+      const response = await fetch(`${getApiBaseUrl()}/analyze/risk-score`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
