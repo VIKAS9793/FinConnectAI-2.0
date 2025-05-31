@@ -92,6 +92,61 @@ class AIProviderService {
       throw new Error('Failed to analyze transaction with AI services');
     }
   }
+
+  async analyzeRiskProfile(customerId, transactionHistory = []) {
+    const transactionSummary = transactionHistory.length > 0 
+      ? `Customer has ${transactionHistory.length} transactions with an average amount of $${(transactionHistory.reduce((sum, t) => sum + (parseFloat(t.amount) || 0), 0) / transactionHistory.length).toFixed(2)}`
+      : 'No transaction history available';
+
+    const prompt = `Analyze this customer's risk profile:
+    - Customer ID: ${customerId}
+    - Transaction History: ${transactionSummary}
+    
+    Provide a comprehensive risk assessment with:
+    1. Risk score (0-1)
+    2. Risk level (Low/Medium/High)
+    3. Key risk factors
+    4. Explanation
+    5. Recommended monitoring approach
+    
+    Format the response as a JSON object with these fields:
+    {
+      "riskScore": number,
+      "riskLevel": "Low" | "Medium" | "High",
+      "lastUpdated": string,
+      "explanation": string,
+      "factors": Array<{name: string, value: string, impact: number}>,
+      "recommendations": string[]
+    }`;
+
+    try {
+      // If hybrid mode, try both providers and return the first successful response
+      if (this.provider === 'hybrid') {
+        try {
+          const result = await this.analyzeWithGoogle(prompt);
+          console.log('Used Google AI for risk profile analysis');
+          return result;
+        } catch (googleError) {
+          console.log('Google AI failed, falling back to OpenAI');
+          const result = await this.analyzeWithOpenAI(prompt);
+          console.log('Used OpenAI for risk profile analysis');
+          return result;
+        }
+      }
+      
+      // Use specific provider based on configuration
+      if (this.provider === 'google') {
+        return await this.analyzeWithGoogle(prompt);
+      } else if (this.provider === 'openai') {
+        return await this.analyzeWithOpenAI(prompt);
+      }
+      
+      throw new Error('No valid AI provider configured');
+    } catch (error) {
+      console.error('AI Risk Profile Analysis Error:', error);
+      throw new Error('Failed to analyze risk profile with AI services');
+    }
+  }
 }
 
 module.exports = new AIProviderService();

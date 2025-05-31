@@ -223,102 +223,109 @@ app.post('/api/analyze/transaction', checkJwt, async (req, res) => {
 
 // AI-Powered Risk Score Endpoint
 app.post('/api/analyze/risk-score', checkJwt, async (req, res) => {
+  const startTime = Date.now();
+  const requestId = Math.random().toString(36).substring(2, 15);
+  
   try {
     const { customerId, transactionHistory = [] } = req.body;
     
     if (!customerId) {
       return res.status(400).json({ 
-        error: 'Missing required field: customerId is required' 
+        error: 'Missing required field: customerId is required',
+        requestId,
+        success: false
       });
     }
 
-    console.log('Analyzing customer risk with AI:', { customerId, transactionCount: transactionHistory.length });
-    
-    // Prepare transaction history summary for AI
-    const transactionSummary = transactionHistory.length > 0 
-      ? `Customer has ${transactionHistory.length} transactions with an average amount of $${(transactionHistory.reduce((sum, t) => sum + (parseFloat(t.amount) || 0), 0) / transactionHistory.length).toFixed(2)}`
-      : 'No transaction history available';
-
-    const prompt = `Analyze this customer's risk profile:
-    - Customer ID: ${customerId}
-    - Transaction History: ${transactionSummary}
-    
-    Provide a comprehensive risk assessment with:
-    1. Risk score (0-1)
-    2. Risk level (Low/Medium/High)
-    3. Key risk factors
-    4. Explanation
-    5. Recommended monitoring approach
-    
-    Format the response as a JSON object with these fields:
-    {
-      "riskScore": number,
-      "riskLevel": "Low" | "Medium" | "High",
-      "lastUpdated": string,
-      "explanation": string,
-      "factors": Array<{name: string, value: string, impact: number}>,
-      "recommendations": string[]
-    }`;
-
-    const completion = await openai.chat.completions.create({
-      model: process.env.OPENAI_MODEL || 'gpt-4',
-      messages: [
-        {
-          role: 'system',
-          content: 'You are a financial risk assessment AI. Analyze customer profiles and transaction history to assess credit and fraud risk.'
-        },
-        {
-          role: 'user',
-          content: prompt
-        }
-      ],
-      temperature: 0.2,
-      max_tokens: 1000
+    console.log(`[${requestId}] Analyzing customer risk with AI:`, { 
+      customerId, 
+      transactionCount: transactionHistory.length 
     });
-
-    // Parse the AI response
-    const responseText = completion.choices[0]?.message?.content || '{}';
-    let analysis;
     
     try {
-      analysis = JSON.parse(responseText);
-    } catch (e) {
-      console.error('Failed to parse AI risk assessment:', responseText);
-      throw new Error('Failed to analyze customer risk with AI');
+      const result = await aiProvider.analyzeRiskProfile(customerId, transactionHistory);
+      
+      // Parse the AI response
+      let analysis;
+      try {
+        // Extract JSON from markdown code block if present
+        let jsonContent = result.content;
+        const jsonMatch = result.content.match(/```(?:json)?\s*([\s\S]*?)\s*```/);
+        if (jsonMatch && jsonMatch[1]) {
+          jsonContent = jsonMatch[1];
+        }
+        
+        analysis = JSON.parse(jsonContent);
+      } catch (parseError) {
+        console.error(`[${requestId}] Failed to parse AI risk assessment:`, result.content);
+        throw new Error('Failed to parse AI response');
+      }
+
+      const responseTime = Date.now() - startTime;
+      console.log(`[${requestId}] Analysis completed in ${responseTime}ms`);
+
+      const response = {
+        customerId,
+        ...analysis,
+        provider: result.provider,
+        model: result.model,
+        lastUpdated: new Date().toISOString(),
+        requestId,
+        responseTime: `${responseTime}ms`,
+        success: true
+      };
+
+      console.log(`[${requestId}] AI Risk Assessment Result:`, response);
+      res.json(response);
+      
+    } catch (error) {
+      console.error(`[${requestId}] Risk Assessment Error:`, error);
+      
+      // Fallback to basic risk scoring if AI fails
+      const riskScore = Math.min(1, Math.max(0, 
+        0.4 * (Math.random() > 0.7 ? 0.8 : Math.random() > 0.3 ? 0.5 : 0.2) +
+        Math.random() * 0.3
+      ));
+
+      const responseTime = Date.now() - startTime;
+
+      res.status(500).json({
+        customerId: req.body.customerId,
+        riskScore: parseFloat(riskScore.toFixed(2)),
+        riskLevel: riskScore > 0.7 ? 'High' : riskScore > 0.4 ? 'Medium' : 'Low',
+        lastUpdated: new Date().toISOString(),
+        explanation: 'Basic risk assessment (AI service unavailable)',
+        factors: [
+          { name: 'Transaction History', value: 'Stable', impact: 0.4 },
+          { name: 'Account Age', value: '>1 year', impact: 0.3 },
+          { name: 'KYC Status', value: 'Verified', impact: 0.2 }
+        ],
+        recommendations: [
+          riskScore > 0.7 ? 'Enhanced monitoring recommended' : 'Standard monitoring'
+        ],
+        provider: 'fallback',
+        model: 'basic',
+        requestId,
+        responseTime: `${responseTime}ms`,
+        success: false,
+        error: error.message
+      });
     }
-
-    const result = {
-      customerId,
-      lastUpdated: new Date().toISOString(),
-      ...analysis
-    };
-
-    console.log('AI Risk Assessment Result:', result);
-    res.json(result);
-    
   } catch (error) {
-    console.error('Risk Assessment Error:', error);
+    const errorMsg = error.message || 'Unknown error';
+    console.error(`[${requestId}] Error in /api/analyze/risk-score:`, errorMsg);
+    console.error(error.stack);
     
-    // Fallback to basic risk scoring if AI fails
-    const riskScore = Math.min(1, Math.max(0, 
-      0.4 * (Math.random() > 0.7 ? 0.8 : Math.random() > 0.3 ? 0.5 : 0.2) +
-      Math.random() * 0.3
-    ));
-
-    res.json({
-      customerId: req.body.customerId || 'cust_' + Math.floor(Math.random() * 10000),
-      riskScore: parseFloat(riskScore.toFixed(2)),
-      riskLevel: riskScore > 0.7 ? 'High' : riskScore > 0.4 ? 'Medium' : 'Low',
-      lastUpdated: new Date().toISOString(),
-      explanation: 'Basic risk assessment (AI service unavailable)',
-      factors: [
-        { name: 'Transaction History', value: 'Stable', impact: 0.4 },
-        { name: 'Account Age', value: '>1 year', impact: 0.3 },
-        { name: 'KYC Status', value: 'Verified', impact: 0.2 }
-      ],
-      recommendations: [
-        riskScore > 0.7 ? 'Enhanced monitoring recommended' : 'Standard monitoring'
-      ]
+    const responseTime = Date.now() - startTime;
+    
+    // Final fallback in case everything else fails
+    res.status(500).json({
+      error: 'Failed to process risk assessment',
+      message: errorMsg,
+      requestId,
+      success: false,
+      timestamp: new Date().toISOString(),
+      responseTime: `${responseTime}ms`
     });
   }
 });
