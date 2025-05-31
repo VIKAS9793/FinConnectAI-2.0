@@ -1,36 +1,12 @@
 import { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-
-interface TransactionData {
-  amount: number;
-  merchant: string;
-  location: string;
-  [key: string]: any;
-}
-
-interface RiskScoreData {
-  customerId: string;
-  transactionHistory: any[];
-  [key: string]: any;
-}
-
-export interface AnalysisResult {
-  riskScore: number;
-  riskLevel: 'Low' | 'Medium' | 'High';
-  explanation: string;
-  recommendedAction?: string;
-  confidence?: number;
-  [key: string]: any;
-}
+import { generateRiskScore } from '../services/api';
+import type { TransactionData, RiskScoreData, AnalysisResult } from '../services/api';
 
 export const useAIService = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const { getAccessToken } = useAuth();
-
-  const getApiBaseUrl = () => {
-    return import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
-  };
 
   const analyzeTransaction = async (
     transactionData: Omit<TransactionData, 'id' | 'status' | 'riskScore' | 'riskLevel'>
@@ -39,20 +15,14 @@ export const useAIService = () => {
     setError(null);
     try {
       const token = await getAccessToken();
-      const response = await fetch(`${getApiBaseUrl()}/analyze/transaction`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(transactionData),
+      localStorage.setItem('token', token);
+      
+      const result = await generateRiskScore({
+        customerId: 'temp-' + Date.now(),
+        transactionHistory: [transactionData]
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to analyze transaction');
-      }
-
-      return await response.json();
+      return result;
     } catch (err: unknown) {
       const errorMessage = err instanceof Error ? err.message : 'Failed to analyze transaction';
       console.error('Error analyzing transaction:', errorMessage);
@@ -68,20 +38,10 @@ export const useAIService = () => {
     setError(null);
     try {
       const token = await getAccessToken();
-      const response = await fetch(`${getApiBaseUrl()}/analyze/risk-score`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(riskData),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to get risk assessment');
-      }
-
-      return await response.json();
+      localStorage.setItem('token', token);
+      
+      const result = await generateRiskScore(riskData);
+      return result;
     } catch (err: unknown) {
       const errorMessage = err instanceof Error ? err.message : 'Failed to get risk assessment';
       console.error('Error getting risk assessment:', errorMessage);
@@ -91,7 +51,9 @@ export const useAIService = () => {
         riskScore: 0.5,
         riskLevel: 'Medium' as const,
         explanation: 'Using default risk assessment due to server error',
-        isFallback: true,
+        confidence: 0,
+        timestamp: new Date().toISOString(),
+        error: errorMessage,
       };
     } finally {
       setIsLoading(false);
