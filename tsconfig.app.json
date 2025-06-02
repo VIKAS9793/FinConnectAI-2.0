@@ -6,6 +6,12 @@
     "module": "ESNext",
     "skipLibCheck": true,
 
+    /* Paths */
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./*"]
+    },
+
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
@@ -18,7 +24,9 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
   },
   "include": ["src"]
 }

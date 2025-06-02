@@ -59,10 +59,18 @@ class AIProviderService {
   }
 
   async analyzeTransaction(transactionData) {
+    console.log('Analyzing transaction with data:', JSON.stringify(transactionData, null, 2));
+    
     const prompt = `Analyze this financial transaction for potential fraud risk:
     - Amount: $${transactionData.amount}
     - Merchant: ${transactionData.merchant}
     - Location: ${transactionData.location}`;
+    
+    console.log('Using AI Provider:', this.provider);
+    console.log('Environment Variables:', {
+      GOOGLE_AI_KEY: process.env.GOOGLE_AI_KEY ? '***' : 'Not set',
+      OPENAI_API_KEY: process.env.OPENAI_API_KEY ? '***' : 'Not set'
+    });
 
     try {
       // If hybrid mode, try both providers and return the first successful response

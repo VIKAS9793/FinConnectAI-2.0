@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 import { AuthProvider } from './contexts/AuthContext';
 import { ProtectedRoute } from './components/auth/ProtectedRoute';
@@ -11,6 +11,7 @@ import Performance from './pages/Performance';
 import Settings from './pages/Settings';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
+import DemoDashboard from './pages/DemoDashboard';  // Import the new DemoDashboard
 
 function App() {
   return (
@@ -20,11 +21,20 @@ function App() {
           <Layout>
             <Routes>
               <Route path="/login" element={<Login />} />
+              <Route path="/" element={<Navigate to="/dashboard" replace />} />
               <Route
-                path="/"
+                path="/dashboard"
                 element={
                   <ProtectedRoute>
                     <Dashboard />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/demo"
+                element={
+                  <ProtectedRoute>
+                    <DemoDashboard />
                   </ProtectedRoute>
                 }
               />

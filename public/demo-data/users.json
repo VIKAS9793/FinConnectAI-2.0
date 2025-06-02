@@ -1,0 +1,47 @@
+[
+  {
+    "id": "0bc04d99-6c23-42fa-972b-451c3f029917",
+    "email": "orlo_flatley42@hotmail.com",
+    "name": "Orlo Flatley",
+    "role": "admin",
+    "lastLogin": "2025-05-17T04:43:45.797Z",
+    "isActive": true,
+    "avatar": "https://i.pravatar.cc/150?u=77c2b447-6124-4d68-95a7-74ab34247d72"
+  },
+  {
+    "id": "60a1942e-6e07-43be-94a1-4a9fc82ac03a",
+    "email": "julian68@hotmail.com",
+    "name": "Julian Crooks",
+    "role": "analyst",
+    "lastLogin": "2025-05-23T14:41:00.696Z",
+    "isActive": true,
+    "avatar": "https://i.pravatar.cc/150?u=88d9c2b4-830a-4ec8-807f-5e819f7116f4"
+  },
+  {
+    "id": "5302a969-7622-40c8-b3ef-bda870080af4",
+    "email": "newton_nader@hotmail.com",
+    "name": "Newton Nader",
+    "role": "viewer",
+    "lastLogin": "2025-05-27T17:22:28.064Z",
+    "isActive": true,
+    "avatar": "https://i.pravatar.cc/150?u=1a32fc7f-14f5-461e-a0a2-3f0503b441a2"
+  },
+  {
+    "id": "5736b295-4619-4301-9549-f35efc6d85f8",
+    "email": "kailyn.moen48@hotmail.com",
+    "name": "Kailyn Moen",
+    "role": "admin",
+    "lastLogin": "2025-05-21T07:48:07.469Z",
+    "isActive": true,
+    "avatar": "https://i.pravatar.cc/150?u=6c914d8c-596a-45c5-8e8b-696ecd8b588c"
+  },
+  {
+    "id": "d855cce4-3cf3-4734-94f8-ae9e4360b85a",
+    "email": "ana_raynor@gmail.com",
+    "name": "Ana Raynor",
+    "role": "analyst",
+    "lastLogin": "2025-05-20T00:36:27.606Z",
+    "isActive": true,
+    "avatar": "https://i.pravatar.cc/150?u=dc79e6cb-dbc1-47cc-adb9-a14c842fd5bc"
+  }
+]

@@ -9,16 +9,21 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation();
-  const getPageTitle = () => {
+  const getPageTitle = (): string => {
     switch (location.pathname) {
       case '/':
+      case '/dashboard':
         return 'Dashboard';
+      case '/demo':
+        return 'Demo Dashboard';
       case '/fraud-explainer':
         return 'Fraud Explainer Agent';
       case '/risk-profile':
         return 'CRM Risk Profile Generator';
       case '/settings':
         return 'Settings';
+      case '/performance':
+        return 'Performance Analytics';
       default:
         return 'Not Found';
     }

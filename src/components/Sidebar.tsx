@@ -55,6 +55,15 @@ const Sidebar = () => {
           <BarChart4 className="h-5 w-5 mr-3" />
           <span>Performance</span>
         </NavLink>
+        <NavLink
+          to="/demo"
+          className={({ isActive }) =>
+            `flex items-center py-3 px-6 hover:bg-blue-800 transition-colors ${isActive ? 'bg-blue-800 border-l-4 border-blue-300' : ''}`
+          }
+        >
+          <BarChart4 className="h-5 w-5 mr-3" />
+          <span>Demo Dashboard</span>
+        </NavLink>
         <div className="px-6 pt-6 pb-2">
           <h2 className="text-xs uppercase tracking-wide text-blue-300 font-semibold">Settings</h2>
         </div>

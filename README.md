@@ -5,7 +5,48 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js](https://img.shields.io/badge/Node.js-18+-339933?logo=node.js)](https://nodejs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript)](https://www.typescriptlang.org/)
-[![Documentation](https://img.shields.io/badge/Documentation-Read%20the%20Docs-blue)](./docs/)
+[![One-Command Setup](https://img.shields.io/badge/Setup-1--Click-orange)](#one-command-setup)
+[![Demo Dashboard](https://img.shields.io/badge/View-Demo_Dashboard-blue)](http://localhost:3000/demo)
+
+## 🚀 One-Command Setup
+
+Get started with FinConnectAI in seconds using our automated setup:
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/FinConnectAI-2.0.git
+cd FinConnectAI-2.0
+
+# Run the setup script
+npm run setup
+
+# Start the application
+npm start
+```
+
+The setup script will:
+1. Install all dependencies
+2. Set up environment variables
+3. Generate demo data
+4. Start both frontend and backend servers
+
+Access the application at [http://localhost:3000](http://localhost:3000)
+
+## 🎮 Demo Features
+
+### Interactive Dashboard
+- Real-time transaction monitoring
+- Fraud detection visualization
+- Risk scoring and analysis
+- Performance metrics
+
+### Demo Data
+- 100+ sample transactions
+- 5 demo users with different roles
+- Realistic financial patterns
+- Pre-configured risk profiles
+
+To access the demo dashboard, log in and navigate to "Demo Dashboard" in the sidebar.
 
 ## 🚨 Important Notice: Demo Implementation
 
@@ -63,6 +104,160 @@ Before deploying to production, you must:
 ## Overview
 
 FinConnectAI 2.0 is a financial transaction analysis platform that leverages AI to detect potential fraud and provide risk assessments. The platform is built with modern web technologies and follows best practices for security and scalability.
+
+## Recent Updates
+
+### Code Quality Improvements (June 2024)
+- Removed unused `calculateRiskLevel` method from `AIService` to improve code maintainability
+- Streamlined risk assessment logic in the transaction processing pipeline
+- Enhanced type safety across the codebase
+
+These changes contribute to better performance and easier maintenance of the codebase while maintaining all existing functionality.
+
+## System Architecture
+
+```mermaid
+graph TD
+    subgraph Frontend
+        A[React 18] --> B[TypeScript]
+        B --> C[Vite]
+        C --> D[Tailwind CSS]
+        D --> E[React Router 6]
+        E --> F[Auth0 React SDK]
+    end
+
+    subgraph Backend
+        G[Node.js/Express] --> H[TypeScript]
+        H --> I[Google Generative AI]
+        H --> J[OpenAI API]
+        I --> K[AI/ML Models]
+        J --> K
+    end
+
+    subgraph Development
+        L[Vitest] --> M[Testing]
+        N[ESLint] --> O[Code Quality]
+        P[Prettier] --> O
+    end
+
+    A <-->|REST API| G
+    F <-->|Auth| Auth0
+    G <-->|API Keys| I
+    G <-->|API Keys| J
+
+    style A fill:#61dafb,stroke:#333,stroke-width:2px
+    style G fill:#68a063,stroke:#333,stroke-width:2px
+    style L fill:#f0db4f,stroke:#333,stroke-width:2px
+```
+
+### Key Components
+
+1. **Frontend**
+   - **Framework**: React 18 with TypeScript
+   - **Styling**: Tailwind CSS
+   - **Build Tool**: Vite
+   - **State Management**: React Context API
+   - **Routing**: React Router 6
+   - **Authentication**: Auth0 React SDK
+
+2. **Backend**
+   - **Runtime**: Node.js with Express
+   - **Language**: TypeScript
+   - **AI/ML Services**:
+     - Google Generative AI
+     - OpenAI API
+   - **Authentication**: Auth0 JWT
+
+3. **Development Tools**
+   - **Testing**: Vitest
+   - **Linting**: ESLint
+   - **Formatting**: Prettier
+   - **Package Manager**: npm
+
+4. **Deployment**
+   - **Frontend**: Static file hosting
+   - **Backend**: Node.js server
+   - **Environment Variables**: .env files
+
+## Mock Implementations & Enterprise Integration
+
+### Current Mock Implementations
+
+FinConnectAI 2.0 includes several mock implementations to facilitate development and demonstration. These mocks can be easily replaced with actual enterprise services.
+
+#### 1. AI Analysis Service
+- **Location**: `src/services/aiService.ts`
+- **Mock Behavior**: Simulates AI-based risk scoring and analysis
+- **Production Integration**: Replace with actual AI/ML model endpoints
+
+#### 2. API Service
+- **Location**: `src/services/api.ts`
+- **Mock Behavior**: Provides mock API responses for development
+- **Production Integration**: Update API endpoints to connect to your backend services
+
+#### 3. Authentication
+- **Location**: `src/hooks/useAuth.ts`
+- **Mock Behavior**: Simulates user authentication
+- **Production Integration**: Connect to your enterprise identity provider (e.g., Okta, Auth0, Azure AD)
+
+### Enterprise Integration Guide
+
+#### Prerequisites
+- Node.js 18+ and npm/yarn
+- Access to your organization's authentication system
+- API credentials for any third-party services
+- Database credentials
+
+#### Integration Steps
+
+1. **Environment Configuration**
+   - Copy `.env.example` to `.env`
+   - Update environment variables with your production values
+   - Configure API endpoints and authentication settings
+
+2. **Authentication Setup**
+   ```typescript
+   // Example: Configure your auth provider in src/config/auth.ts
+   export const authConfig = {
+     clientId: 'YOUR_CLIENT_ID',
+     authority: 'https://your-identity-provider.com',
+     redirectUri: window.location.origin,
+   };
+   ```
+
+3. **API Integration**
+   - Update API base URLs in `src/config/api.ts`
+   - Implement API interceptors for authentication headers
+   - Configure request/response transformations as needed
+
+4. **AI/ML Service Integration**
+   - Replace mock implementations in `aiService.ts` with actual model endpoints
+   - Configure model parameters and thresholds
+   - Implement proper error handling and fallbacks
+
+5. **Deployment**
+   - Build the application: `npm run build`
+   - Deploy the `build` directory to your hosting platform
+   - Configure CI/CD pipelines for automated deployments
+
+### Testing in Production Environment
+
+1. **Smoke Testing**
+   - Verify authentication flow
+   - Test critical API endpoints
+   - Validate risk scoring with test transactions
+
+2. **Performance Testing**
+   - Load test with production-like traffic
+   - Monitor API response times
+   - Validate caching strategies
+
+3. **Security Review**
+   - Conduct penetration testing
+   - Review OWASP Top 10 vulnerabilities
+   - Validate data encryption in transit and at rest
+
+For detailed enterprise deployment guides and support, please contact our enterprise support team at [enterprise-support@finconnectai.com](mailto:enterprise-support@finconnectai.com).
 
 ## Real-World Impact & Business Value
 

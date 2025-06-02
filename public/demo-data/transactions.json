@@ -1,0 +1,1702 @@
+[
+  {
+    "id": "1faaac02-7c17-4ee6-b390-15d7a4fdbb78",
+    "amount": 517.43,
+    "currency": "USD",
+    "merchant": "Lynch Group",
+    "category": "Transfer",
+    "location": "Zboncakside, Montserrat",
+    "timestamp": "2025-05-12T12:49:52.045Z",
+    "status": "completed",
+    "isFraudulent": false,
+    "riskScore": 34,
+    "details": {
+      "ipAddress": "232.177.154.124",
+      "deviceId": "93f5bdca-df64-432d-9461-0bd6043790b2",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_8)  AppleWebKit/534.1.2 (KHTML, like Gecko) Chrome/13.0.824.0 Safari/534.1.2"
+    }
+  },
+  {
+    "id": "006df0df-1aba-42ee-983a-e07780c8ce98",
+    "amount": 248.98,
+    "currency": "USD",
+    "merchant": "O'Reilly, Nienow and Koss",
+    "category": "Bills",
+    "location": "South Alvah, Bahamas",
+    "timestamp": "2025-05-26T20:42:30.343Z",
+    "status": "failed",
+    "isFraudulent": false,
+    "riskScore": 8,
+    "details": {
+      "ipAddress": "252.178.115.33",
+      "deviceId": "184bba89-04a3-49e0-955e-4ea284191e73",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 5.1) AppleWebKit/538.1.1 (KHTML, like Gecko) Chrome/13.0.813.0 Safari/538.1.1"
+    }
+  },
+  {
+    "id": "a9ffe7f5-b0fa-40b4-ad79-fd7a5e40598e",
+    "amount": 814.08,
+    "currency": "USD",
+    "merchant": "Trantow - Hermann",
+    "category": "Entertainment",
+    "location": "Boise City, Macedonia",
+    "timestamp": "2025-05-25T00:18:29.967Z",
+    "status": "completed",
+    "isFraudulent": false,
+    "riskScore": 24,
+    "details": {
+      "ipAddress": "173.217.167.223",
+      "deviceId": "9b7a13fb-9df6-43ca-933f-e53326dc990a",
+      "userAgent": "Mozilla/5.0 (Windows NT 5.0; Win64; x64; rv:8.6) Gecko/20100101 Firefox/8.6.1"
+    }
+  },
+  {
+    "id": "51b206b2-f11c-4eaf-9e76-cc85faa62976",
+    "amount": 709.42,
+    "currency": "USD",
+    "merchant": "Maggio - Heidenreich",
+    "category": "Shopping",
+    "location": "New Mariane, Christmas Island",
+    "timestamp": "2025-05-04T02:44:20.936Z",
+    "status": "pending",
+    "isFraudulent": false,
+    "riskScore": 25,
+    "details": {
+      "ipAddress": "102.151.89.128",
+      "deviceId": "40dbf6de-2165-4cd4-8d2c-91ee149c2413",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 5.2) AppleWebKit/531.2.2 (KHTML, like Gecko) Chrome/18.0.816.0 Safari/531.2.2"
+    }
+  },
+  {
+    "id": "01d75550-79cf-4fbb-bcb7-44ceab6d93a4",
+    "amount": 885.15,
+    "currency": "USD",
+    "merchant": "Hartmann, Schroeder and Ullrich",
+    "category": "Bills",
+    "location": "West Chauncey, Virgin Islands, British",
+    "timestamp": "2025-06-01T05:44:57.734Z",
+    "status": "pending",
+    "isFraudulent": false,
+    "riskScore": 17,
+    "details": {
+      "ipAddress": "33.48.174.15",
+      "deviceId": "d96af37e-d2bf-4c1d-a7c7-60ebcd349005",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 6.2) AppleWebKit/536.0.1 (KHTML, like Gecko) Chrome/25.0.899.0 Safari/536.0.1"
+    }
+  },
+  {
+    "id": "86e81995-eada-45fc-bddc-ecae5f5023b0",
+    "amount": 477.6,
+    "currency": "USD",
+    "merchant": "Collier and Sons",
+    "category": "Transfer",
+    "location": "North Amiramouth, Grenada",
+    "timestamp": "2025-06-01T12:25:13.431Z",
+    "status": "pending",
+    "isFraudulent": false,
+    "riskScore": 55,
+    "details": {
+      "ipAddress": "9.199.218.145",
+      "deviceId": "acef28d0-70b3-4aa3-a42f-cc41a4c39829",
+      "userAgent": "Mozilla/5.0 (compatible; MSIE 8.0; Windows NT 6.2; Trident/3.0)"
+    }
+  },
+  {
+    "id": "435860e2-9343-45b7-af6a-49dbdc2a6c49",
+    "amount": 491.11,
+    "currency": "USD",
+    "merchant": "Wehner and Sons",
+    "category": "Travel",
+    "location": "South Stephania, Micronesia",
+    "timestamp": "2025-05-30T16:09:39.871Z",
+    "status": "completed",
+    "isFraudulent": false,
+    "riskScore": 58,
+    "details": {
+      "ipAddress": "28.88.112.131",
+      "deviceId": "f92e5c38-db00-4196-8c56-6f7b610577cd",
+      "userAgent": "Mozilla/5.0 (compatible; MSIE 8.0; Windows NT 6.0; Trident/4.1)"
+    }
+  },
+  {
+    "id": "ee1268a9-8a6b-46f5-8c3a-1cd060a13f2e",
+    "amount": 664.07,
+    "currency": "USD",
+    "merchant": "Goldner, McDermott and Littel",
+    "category": "Shopping",
+    "location": "South Mableview, Cocos (Keeling) Islands",
+    "timestamp": "2025-05-12T17:32:24.704Z",
+    "status": "completed",
+    "isFraudulent": false,
+    "riskScore": 8,
+    "details": {
+      "ipAddress": "170.79.10.203",
+      "deviceId": "d7e834ff-b00f-488d-8871-28ed518a6092",
+      "userAgent": "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.0; Trident/4.0; .NET CLR 3.6.31719.0)"
+    }
+  },
+  {
+    "id": "15c1b40e-75bf-4dc2-b090-0b8cf7ca4cea",
+    "amount": 805.59,
+    "currency": "USD",
+    "merchant": "Crooks, Mills and Beatty",
+    "category": "Shopping",
+    "location": "Dejonville, Yemen",
+    "timestamp": "2025-05-30T17:51:14.267Z",
+    "status": "failed",
+    "isFraudulent": false,
+    "riskScore": 54,
+    "details": {
+      "ipAddress": "78.73.45.204",
+      "deviceId": "cd2d858f-a6b7-4e9d-9a44-3b06122c54de",
+      "userAgent": "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.2; Trident/3.0; .NET CLR 3.0.37352.5)"
+    }
+  },
+  {
+    "id": "f3c672c6-5893-41b2-8455-ad1528451329",
+    "amount": 564.78,
+    "currency": "USD",
+    "merchant": "Schimmel - Pouros",
+    "category": "Food & Dining",
+    "location": "Thousand Oaks, Moldova",
+    "timestamp": "2025-05-10T18:11:45.690Z",
+    "status": "completed",
+    "isFraudulent": false,
+    "riskScore": 47,
+    "details": {
+      "ipAddress": "186.125.101.108",
+      "deviceId": "2bf84768-da1d-465d-bd64-437b77668035",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 6.0) AppleWebKit/538.1.1 (KHTML, like Gecko) Chrome/20.0.891.0 Safari/538.1.1"
+    }
+  },
+  {
+    "id": "c8862d9f-6102-41f8-8f21-3188837d8604",
+    "amount": 357.5,
+    "currency": "USD",
+    "merchant": "Schultz - Bruen",
+    "category": "Shopping",
+    "location": "New Margarette, Iraq",
+    "timestamp": "2025-05-31T16:39:35.715Z",
+    "status": "suspicious",
+    "isFraudulent": true,
+    "riskScore": 97,
+    "details": {
+      "ipAddress": "56.24.16.193",
+      "deviceId": "777b83bb-fbd5-41bb-bff2-c93c1c461b31",
+      "userAgent": "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.0; Trident/6.1; .NET CLR 2.5.52663.0)"
+    }
+  },
+  {
+    "id": "920eccb4-b8d1-4759-9eb6-6aaa79073694",
+    "amount": 798.68,
+    "currency": "USD",
+    "merchant": "Veum - Abbott",
+    "category": "Transfer",
+    "location": "Flagstaff, Holy See (Vatican City State)",
+    "timestamp": "2025-05-08T03:15:35.911Z",
+    "status": "failed",
+    "isFraudulent": false,
+    "riskScore": 29,
+    "details": {
+      "ipAddress": "152.139.165.166",
+      "deviceId": "4004c703-6378-49e8-89c9-8ae2fdeb6659",
+      "userAgent": "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_10_9 rv:2.0; FJ) AppleWebKit/532.2.0 (KHTML, like Gecko) Version/4.0.4 Safari/532.2.0"
+    }
+  },
+  {
+    "id": "eebd2cbf-646a-4717-81d1-fac36ffbd059",
+    "amount": 913.72,
+    "currency": "USD",
+    "merchant": "Gorczany Inc",
+    "category": "Entertainment",
+    "location": "Kuhnberg, Malawi",
+    "timestamp": "2025-05-21T07:32:09.021Z",
+    "status": "completed",
+    "isFraudulent": false,
+    "riskScore": 22,
+    "details": {
+      "ipAddress": "193.83.167.75",
+      "deviceId": "9efc08fc-4f02-4032-8388-009dff2dfcd2",
+      "userAgent": "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/3.1; .NET CLR 1.6.28076.3)"
+    }
+  },
+  {
+    "id": "8375ae50-02d8-4e88-9350-0c58c7084d09",
+    "amount": 318.99,
+    "currency": "USD",
+    "merchant": "Gorczany Group",
+    "category": "Shopping",
+    "location": "Adaborough, Nicaragua",
+    "timestamp": "2025-05-12T04:44:58.532Z",
+    "status": "failed",
+    "isFraudulent": false,
+    "riskScore": 47,
+    "details": {
+      "ipAddress": "23.48.104.211",
+      "deviceId": "bb3d4dbc-0151-4656-83d5-f48f6eaca270",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 6.1) AppleWebKit/536.0.1 (KHTML, like Gecko) Chrome/23.0.887.0 Safari/536.0.1"
+    }
+  },
+  {
+    "id": "b5cc29b8-21ec-47a0-8c42-fd17a9293cf8",
+    "amount": 655.05,
+    "currency": "USD",
+    "merchant": "Pacocha Inc",
+    "category": "Shopping",
+    "location": "South Anjali, Saint Pierre and Miquelon",
+    "timestamp": "2025-05-12T07:01:08.986Z",
+    "status": "failed",
+    "isFraudulent": false,
+    "riskScore": 35,
+    "details": {
+      "ipAddress": "209.8.200.128",
+      "deviceId": "7e8156d1-d3c4-44af-88c1-234329b59381",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 5.2)AppleWebKit/533.2.0 (KHTML, like Gecko) Version/7.1.9 Safari/533.2.0"
+    }
+  },
+  {
+    "id": "e577c599-6dbb-4cc6-bf0d-051702303022",
+    "amount": 508.7,
+    "currency": "USD",
+    "merchant": "Walsh Group",
+    "category": "Entertainment",
+    "location": "Port Eladio, Luxembourg",
+    "timestamp": "2025-05-18T17:23:26.432Z",
+    "status": "completed",
+    "isFraudulent": false,
+    "riskScore": 48,
+    "details": {
+      "ipAddress": "199.39.158.0",
+      "deviceId": "324462ed-d5b9-4eec-b5f8-44f0c79da050",
+      "userAgent": "Mozilla/5.0 (Windows NT 6.2; Trident/7.0; Touch; rv:11.0) like Gecko"
+    }
+  },
+  {
+    "id": "938200cf-44ad-460b-955e-0d4d65d94f6a",
+    "amount": 423.04,
+    "currency": "USD",
+    "merchant": "Tremblay, Zboncak and Renner",
+    "category": "Travel",
+    "location": "Hansenfurt, Turks and Caicos Islands",
+    "timestamp": "2025-05-04T06:49:43.080Z",
+    "status": "pending",
+    "isFraudulent": false,
+    "riskScore": 7,
+    "details": {
+      "ipAddress": "92.0.86.207",
+      "deviceId": "86ede528-3323-4013-b35a-78b98f3b415e",
+      "userAgent": "Mozilla/5.0 (Windows NT 6.3; Trident/7.0; Touch; rv:11.0) like Gecko"
+    }
+  },
+  {
+    "id": "aec8e07e-7633-47e2-bb43-9bf9038df6ed",
+    "amount": 570.47,
+    "currency": "USD",
+    "merchant": "Becker, Ruecker and Mohr",
+    "category": "Travel",
+    "location": "Rock Hill, Israel",
+    "timestamp": "2025-05-26T10:48:05.356Z",
+    "status": "pending",
+    "isFraudulent": false,
+    "riskScore": 59,
+    "details": {
+      "ipAddress": "196.80.119.163",
+      "deviceId": "d23118c7-7111-42b8-99f4-18f670647bc7",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 6.0) AppleWebKit/534.2.2 (KHTML, like Gecko) Chrome/34.0.865.0 Safari/534.2.2"
+    }
+  },
+  {
+    "id": "31dd940b-cfd9-4613-9a40-7cbbc00f1a83",
+    "amount": 29.04,
+    "currency": "USD",
+    "merchant": "Gerhold LLC",
+    "category": "Bills",
+    "location": "Chesterville, Swaziland",
+    "timestamp": "2025-05-27T07:40:12.158Z",
+    "status": "suspicious",
+    "isFraudulent": true,
+    "riskScore": 70,
+    "details": {
+      "ipAddress": "225.93.32.37",
+      "deviceId": "6bea4abb-46f8-4996-bfaa-67112880013e",
+      "userAgent": "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/3.0; .NET CLR 2.8.60316.7)"
+    }
+  },
+  {
+    "id": "9d81321e-22f1-4e5e-ac71-ab19ab19a139",
+    "amount": 680.59,
+    "currency": "USD",
+    "merchant": "Kling, Balistreri and Harber",
+    "category": "Shopping",
+    "location": "New Ozella, Algeria",
+    "timestamp": "2025-05-14T02:05:07.238Z",
+    "status": "completed",
+    "isFraudulent": false,
+    "riskScore": 28,
+    "details": {
+      "ipAddress": "77.233.3.64",
+      "deviceId": "3cb26174-6de9-4cae-a87d-ef07589d7eea",
+      "userAgent": "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.3; Trident/5.1)"
+    }
+  },
+  {
+    "id": "89296b34-b108-4ce2-b382-51bdf6a1a12e",
+    "amount": 776.85,
+    "currency": "USD",
+    "merchant": "Dare LLC",
+    "category": "Transfer",
+    "location": "Jasonland, Christmas Island",
+    "timestamp": "2025-05-10T22:36:21.078Z",
+    "status": "completed",
+    "isFraudulent": false,
+    "riskScore": 58,
+    "details": {
+      "ipAddress": "77.192.84.174",
+      "deviceId": "04f2f1de-f6db-4e92-8c78-3de8a88aa034",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 6.1) AppleWebKit/537.0.2 (KHTML, like Gecko) Chrome/21.0.840.0 Safari/537.0.2"
+    }
+  },
+  {
+    "id": "f929c95c-5067-402c-bb7e-58cff5e9b0b2",
+    "amount": 611.48,
+    "currency": "USD",
+    "merchant": "Ebert, Volkman and Tremblay",
+    "category": "Transfer",
+    "location": "East Judeborough, Niue",
+    "timestamp": "2025-05-29T19:11:52.699Z",
+    "status": "completed",
+    "isFraudulent": false,
+    "riskScore": 41,
+    "details": {
+      "ipAddress": "182.64.38.153",
+      "deviceId": "89affd25-c2ea-47f3-b1d5-39242e8c9096",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 5.1) AppleWebKit/534.1.2 (KHTML, like Gecko) Chrome/22.0.885.0 Safari/534.1.2"
+    }
+  },
+  {
+    "id": "0eafccfe-c5f1-4069-b8f0-87587473b2da",
+    "amount": 834.39,
+    "currency": "USD",
+    "merchant": "Hoppe, Mann and Gerlach",
+    "category": "Entertainment",
+    "location": "Thornton, Virgin Islands, U.S.",
+    "timestamp": "2025-05-11T11:00:02.823Z",
+    "status": "failed",
+    "isFraudulent": false,
+    "riskScore": 43,
+    "details": {
+      "ipAddress": "129.119.79.66",
+      "deviceId": "cb6d36a4-7e87-4411-9b2f-07288d18b843",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 5.0) AppleWebKit/531.0.1 (KHTML, like Gecko) Chrome/26.0.888.0 Safari/531.0.1"
+    }
+  },
+  {
+    "id": "a3d18b73-83a3-4513-8407-a98f5be54ea8",
+    "amount": 855.65,
+    "currency": "USD",
+    "merchant": "Metz - O'Hara",
+    "category": "Entertainment",
+    "location": "Edythland, Ghana",
+    "timestamp": "2025-05-05T23:50:16.761Z",
+    "status": "pending",
+    "isFraudulent": false,
+    "riskScore": 38,
+    "details": {
+      "ipAddress": "154.248.197.229",
+      "deviceId": "cd60c674-b288-4b26-bf18-446a579ec673",
+      "userAgent": "Mozilla/5.0 (Windows NT 6.3; Trident/7.0; Touch; rv:11.0) like Gecko"
+    }
+  },
+  {
+    "id": "fee65eb5-120c-40e0-83fe-4c7c9c9c01bc",
+    "amount": 281.78,
+    "currency": "USD",
+    "merchant": "Jerde Group",
+    "category": "Travel",
+    "location": "Hermannville, Cambodia",
+    "timestamp": "2025-05-18T19:57:16.541Z",
+    "status": "pending",
+    "isFraudulent": false,
+    "riskScore": 17,
+    "details": {
+      "ipAddress": "195.152.92.123",
+      "deviceId": "ac086251-32c1-4199-969c-d2b61d431280",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 5.3) AppleWebKit/537.1.1 (KHTML, like Gecko) Chrome/23.0.857.0 Safari/537.1.1"
+    }
+  },
+  {
+    "id": "5c094f37-db29-4562-8b41-49cc08871d1a",
+    "amount": 850.69,
+    "currency": "USD",
+    "merchant": "Bernhard, Kuhlman and Cassin",
+    "category": "Food & Dining",
+    "location": "Port Elias, Djibouti",
+    "timestamp": "2025-05-31T00:32:41.276Z",
+    "status": "completed",
+    "isFraudulent": false,
+    "riskScore": 46,
+    "details": {
+      "ipAddress": "158.222.72.61",
+      "deviceId": "23cc3dab-0adb-43ef-8235-43b90f14c4a9",
+      "userAgent": "Mozilla/5.0 (Windows NT 6.2; Trident/7.0; rv:11.0) like Gecko"
+    }
+  },
+  {
+    "id": "a770d85c-9e4f-41e9-923e-6f802d60c837",
+    "amount": 66.14,
+    "currency": "USD",
+    "merchant": "Ankunding - Effertz",
+    "category": "Entertainment",
+    "location": "Monterey Park, Moldova",
+    "timestamp": "2025-05-14T23:13:59.470Z",
+    "status": "pending",
+    "isFraudulent": false,
+    "riskScore": 50,
+    "details": {
+      "ipAddress": "74.184.179.234",
+      "deviceId": "a54a80cd-9831-41d0-889e-368d642f5da0",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_3 rv:5.0; GL) AppleWebKit/533.1.2 (KHTML, like Gecko) Version/6.1.1 Safari/533.1.2"
+    }
+  },
+  {
+    "id": "23463473-b5ba-40a0-ad0d-88e357b0467e",
+    "amount": 459.45,
+    "currency": "USD",
+    "merchant": "Brown - Mueller",
+    "category": "Travel",
+    "location": "Braulioside, Dominican Republic",
+    "timestamp": "2025-05-04T07:14:44.716Z",
+    "status": "completed",
+    "isFraudulent": false,
+    "riskScore": 15,
+    "details": {
+      "ipAddress": "0.38.32.45",
+      "deviceId": "32ad4305-8d47-4194-b96c-95f5dd427f21",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 6.0) AppleWebKit/538.2.1 (KHTML, like Gecko) Chrome/28.0.871.0 Safari/538.2.1"
+    }
+  },
+  {
+    "id": "38cc99a9-20ca-4794-8494-8a57d7c5b98e",
+    "amount": 572.8,
+    "currency": "USD",
+    "merchant": "Purdy and Sons",
+    "category": "Travel",
+    "location": "Luellafurt, Sao Tome and Principe",
+    "timestamp": "2025-05-08T09:03:37.575Z",
+    "status": "suspicious",
+    "isFraudulent": true,
+    "riskScore": 98,
+    "details": {
+      "ipAddress": "154.237.57.60",
+      "deviceId": "1f9d52e1-556f-49cf-91f4-1f86699a6dff",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 5.2) AppleWebKit/535.0.1 (KHTML, like Gecko) Chrome/15.0.819.0 Safari/535.0.1"
+    }
+  },
+  {
+    "id": "6df17d24-b6e7-4b3d-88c9-d4bfe5ce433c",
+    "amount": 833.89,
+    "currency": "USD",
+    "merchant": "Funk, Schimmel and Roberts",
+    "category": "Entertainment",
+    "location": "New Evan, Portugal",
+    "timestamp": "2025-05-04T11:17:42.903Z",
+    "status": "pending",
+    "isFraudulent": false,
+    "riskScore": 30,
+    "details": {
+      "ipAddress": "91.133.120.4",
+      "deviceId": "5b7f7abf-138a-4122-adf7-859d692bf2d7",
+      "userAgent": "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.0; Trident/3.1; .NET CLR 4.8.81554.7)"
+    }
+  },
+  {
+    "id": "cc3a1d2b-350d-48e8-93b8-625b1f2cd1b3",
+    "amount": 3.96,
+    "currency": "USD",
+    "merchant": "Weissnat Group",
+    "category": "Transfer",
+    "location": "St. Peters, Thailand",
+    "timestamp": "2025-05-30T10:23:25.512Z",
+    "status": "failed",
+    "isFraudulent": false,
+    "riskScore": 31,
+    "details": {
+      "ipAddress": "216.50.24.239",
+      "deviceId": "5f38c5f3-2fcd-47b8-994d-978aed11a373",
+      "userAgent": "Opera/12.29 (Windows NT 5.1; U; OC Presto/2.9.182 Version/10.00)"
+    }
+  },
+  {
+    "id": "5258c4d1-53fb-4c81-be0f-2bcce308c237",
+    "amount": 863.43,
+    "currency": "USD",
+    "merchant": "Klein - Feest",
+    "category": "Shopping",
+    "location": "Mitchellshire, Malta",
+    "timestamp": "2025-05-13T03:54:19.362Z",
+    "status": "completed",
+    "isFraudulent": false,
+    "riskScore": 48,
+    "details": {
+      "ipAddress": "18.45.118.79",
+      "deviceId": "7f71b422-b73b-40fd-8358-36ddd22794da",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_6 rv:3.0; YI) AppleWebKit/531.2.1 (KHTML, like Gecko) Version/6.1.1 Safari/531.2.1"
+    }
+  },
+  {
+    "id": "03062e0a-2b29-4dc1-8c48-f1347e4e5e1b",
+    "amount": 198.72,
+    "currency": "USD",
+    "merchant": "Murray - Grant",
+    "category": "Transfer",
+    "location": "VonRuedenton, Iceland",
+    "timestamp": "2025-05-04T23:13:50.084Z",
+    "status": "failed",
+    "isFraudulent": false,
+    "riskScore": 58,
+    "details": {
+      "ipAddress": "31.171.27.191",
+      "deviceId": "0abdb5a9-a825-45bd-8752-9612483e90f3",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 5.0) AppleWebKit/534.1.1 (KHTML, like Gecko) Chrome/34.0.851.0 Safari/534.1.1"
+    }
+  },
+  {
+    "id": "79d7c339-a5e7-4b7c-82d6-c48114c9df12",
+    "amount": 857.25,
+    "currency": "USD",
+    "merchant": "MacGyver Inc",
+    "category": "Transfer",
+    "location": "Titusville, Mayotte",
+    "timestamp": "2025-05-27T19:56:43.555Z",
+    "status": "completed",
+    "isFraudulent": false,
+    "riskScore": 25,
+    "details": {
+      "ipAddress": "40.98.238.187",
+      "deviceId": "b38810a9-a389-4546-880e-4dbc0cc13158",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 6.2) AppleWebKit/537.1.1 (KHTML, like Gecko) Chrome/29.0.864.0 Safari/537.1.1"
+    }
+  },
+  {
+    "id": "240047da-d479-4071-b53a-5749b6047af7",
+    "amount": 206.63,
+    "currency": "USD",
+    "merchant": "Kub, Grady and Green",
+    "category": "Entertainment",
+    "location": "Hayesport, Iran",
+    "timestamp": "2025-06-01T00:43:10.388Z",
+    "status": "failed",
+    "isFraudulent": false,
+    "riskScore": 41,
+    "details": {
+      "ipAddress": "109.107.110.48",
+      "deviceId": "38bbec91-10de-4790-8f99-3c12bd005b75",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 6.1) AppleWebKit/532.0.1 (KHTML, like Gecko) Chrome/38.0.825.0 Safari/532.0.1"
+    }
+  },
+  {
+    "id": "c0a4eb39-61e6-485d-b373-596e0b801efa",
+    "amount": 892.27,
+    "currency": "USD",
+    "merchant": "Boyle, Hane and Bauch",
+    "category": "Food & Dining",
+    "location": "East Namemouth, Virgin Islands, British",
+    "timestamp": "2025-05-04T16:50:23.033Z",
+    "status": "completed",
+    "isFraudulent": false,
+    "riskScore": 7,
+    "details": {
+      "ipAddress": "185.186.237.218",
+      "deviceId": "ba6df034-8e74-4c96-bc96-e473aea2d1bc",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 6.3) AppleWebKit/531.2.2 (KHTML, like Gecko) Chrome/24.0.836.0 Safari/531.2.2"
+    }
+  },
+  {
+    "id": "163ec975-505f-40f3-b44a-af1bf7ce51f6",
+    "amount": 93.19,
+    "currency": "USD",
+    "merchant": "Huel, Bogan and Kuhic",
+    "category": "Bills",
+    "location": "Port Cathrynstad, Grenada",
+    "timestamp": "2025-05-26T02:12:01.151Z",
+    "status": "completed",
+    "isFraudulent": false,
+    "riskScore": 25,
+    "details": {
+      "ipAddress": "35.137.198.139",
+      "deviceId": "c90bc123-4ec3-414c-8245-d41df5d25cff",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 6.2) AppleWebKit/538.1.1 (KHTML, like Gecko) Chrome/18.0.857.0 Safari/538.1.1"
+    }
+  },
+  {
+    "id": "5fa5def1-e260-4074-9096-108452129b0d",
+    "amount": 474.09,
+    "currency": "USD",
+    "merchant": "Hintz - Simonis",
+    "category": "Food & Dining",
+    "location": "Nikolausmouth, Angola",
+    "timestamp": "2025-05-08T09:00:07.071Z",
+    "status": "completed",
+    "isFraudulent": false,
+    "riskScore": 20,
+    "details": {
+      "ipAddress": "89.213.185.4",
+      "deviceId": "c8311df7-4d64-4edc-a521-7a1b9e96a6ae",
+      "userAgent": "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.0; Trident/3.1)"
+    }
+  },
+  {
+    "id": "43a8e8d1-5d0b-4979-96d5-d1a6cbfd526d",
+    "amount": 731.25,
+    "currency": "USD",
+    "merchant": "Langosh and Sons",
+    "category": "Entertainment",
+    "location": "Gloriamouth, Anguilla",
+    "timestamp": "2025-05-20T09:55:10.468Z",
+    "status": "failed",
+    "isFraudulent": false,
+    "riskScore": 12,
+    "details": {
+      "ipAddress": "203.241.164.149",
+      "deviceId": "fc950b72-7649-4f7f-8b57-971632a52b55",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 5.3) AppleWebKit/531.2.2 (KHTML, like Gecko) Chrome/18.0.855.0 Safari/531.2.2"
+    }
+  },
+  {
+    "id": "aa6e33f8-7ca6-4e0c-bc3c-6cdb6a1541cd",
+    "amount": 963.38,
+    "currency": "USD",
+    "merchant": "Pollich - Batz",
+    "category": "Food & Dining",
+    "location": "Fayetteville, Saint Martin",
+    "timestamp": "2025-06-01T20:48:42.325Z",
+    "status": "pending",
+    "isFraudulent": false,
+    "riskScore": 51,
+    "details": {
+      "ipAddress": "67.254.221.60",
+      "deviceId": "0b214f1f-765a-472e-af1c-170eb0667044",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8.6; rv:14.7) Gecko/20100101 Firefox/14.7.9"
+    }
+  },
+  {
+    "id": "6da2b324-2f76-47a3-812d-46e83ae083ae",
+    "amount": 872.06,
+    "currency": "USD",
+    "merchant": "Reichel - Williamson",
+    "category": "Bills",
+    "location": "Thornton, Nigeria",
+    "timestamp": "2025-05-27T05:00:35.361Z",
+    "status": "pending",
+    "isFraudulent": false,
+    "riskScore": 29,
+    "details": {
+      "ipAddress": "125.230.99.246",
+      "deviceId": "8938b923-f72a-4993-9881-9b7438ac9552",
+      "userAgent": "Mozilla/5.0 (Windows NT 5.1; rv:10.4) Gecko/20100101 Firefox/10.4.8"
+    }
+  },
+  {
+    "id": "ce2bccb9-0da6-45f2-a34f-73cdbb1fdcdb",
+    "amount": 721.53,
+    "currency": "USD",
+    "merchant": "Legros - Swift",
+    "category": "Food & Dining",
+    "location": "Lake Brennanstad, Papua New Guinea",
+    "timestamp": "2025-05-24T04:26:12.643Z",
+    "status": "failed",
+    "isFraudulent": false,
+    "riskScore": 47,
+    "details": {
+      "ipAddress": "239.164.92.40",
+      "deviceId": "5ca19c37-14c3-4eab-afb2-cdf048013997",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 5.3) AppleWebKit/537.2.0 (KHTML, like Gecko) Chrome/23.0.869.0 Safari/537.2.0"
+    }
+  },
+  {
+    "id": "33fbf75c-378f-4931-9b3c-be15c5bd1b5b",
+    "amount": 798.65,
+    "currency": "USD",
+    "merchant": "Beer, Nader and Wolf",
+    "category": "Shopping",
+    "location": "Schmitttown, Ecuador",
+    "timestamp": "2025-05-15T21:31:37.071Z",
+    "status": "completed",
+    "isFraudulent": false,
+    "riskScore": 45,
+    "details": {
+      "ipAddress": "224.77.52.91",
+      "deviceId": "df813742-f598-45ec-9eb3-31866b77463a",
+      "userAgent": "Mozilla/5.0 (compatible; MSIE 8.0; Windows NT 6.1; Trident/4.0)"
+    }
+  },
+  {
+    "id": "63c87d46-2c6e-4db2-9b86-36051af11f67",
+    "amount": 905.43,
+    "currency": "USD",
+    "merchant": "Steuber Inc",
+    "category": "Entertainment",
+    "location": "New Antwan, Niue",
+    "timestamp": "2025-05-13T04:42:29.172Z",
+    "status": "completed",
+    "isFraudulent": false,
+    "riskScore": 46,
+    "details": {
+      "ipAddress": "67.55.130.208",
+      "deviceId": "1a20cbdd-1445-4498-a268-f1eb44c724a4",
+      "userAgent": "Mozilla/5.0 (Windows NT 5.3; WOW64; rv:7.7) Gecko/20100101 Firefox/7.7.6"
+    }
+  },
+  {
+    "id": "779ce047-c5eb-4c8e-9010-401778341f50",
+    "amount": 35.78,
+    "currency": "USD",
+    "merchant": "Will and Sons",
+    "category": "Bills",
+    "location": "South Markusborough, Lithuania",
+    "timestamp": "2025-05-18T08:49:52.620Z",
+    "status": "pending",
+    "isFraudulent": false,
+    "riskScore": 36,
+    "details": {
+      "ipAddress": "8.161.191.75",
+      "deviceId": "c2ec4d57-918b-49dd-ab31-0510ccc4b697",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 6.0) AppleWebKit/537.2.2 (KHTML, like Gecko) Chrome/16.0.888.0 Safari/537.2.2"
+    }
+  },
+  {
+    "id": "08b9d1d9-9e60-4f13-90a7-3864370270e6",
+    "amount": 310.24,
+    "currency": "USD",
+    "merchant": "Medhurst - Goldner",
+    "category": "Food & Dining",
+    "location": "Port Camron, French Southern Territories",
+    "timestamp": "2025-05-20T11:41:23.492Z",
+    "status": "failed",
+    "isFraudulent": false,
+    "riskScore": 32,
+    "details": {
+      "ipAddress": "23.156.255.27",
+      "deviceId": "666598d3-8a8b-4ad9-83c4-6b121b8e580a",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 5.0) AppleWebKit/533.2.1 (KHTML, like Gecko) Chrome/27.0.868.0 Safari/533.2.1"
+    }
+  },
+  {
+    "id": "a543fec1-d0b9-4f6d-ab16-e7c642285c78",
+    "amount": 532.56,
+    "currency": "USD",
+    "merchant": "O'Kon LLC",
+    "category": "Travel",
+    "location": "Mantebury, Aruba",
+    "timestamp": "2025-06-01T03:07:06.273Z",
+    "status": "pending",
+    "isFraudulent": false,
+    "riskScore": 55,
+    "details": {
+      "ipAddress": "167.241.162.134",
+      "deviceId": "dee67301-9d33-4ba9-b60a-f6b5a205db29",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 6.1) AppleWebKit/537.1.1 (KHTML, like Gecko) Chrome/35.0.824.0 Safari/537.1.1"
+    }
+  },
+  {
+    "id": "f5d36940-ad66-4738-a3eb-e0b4f80fe19f",
+    "amount": 384.89,
+    "currency": "USD",
+    "merchant": "Morar Group",
+    "category": "Food & Dining",
+    "location": "Hampton, Uganda",
+    "timestamp": "2025-05-11T18:30:35.662Z",
+    "status": "completed",
+    "isFraudulent": false,
+    "riskScore": 10,
+    "details": {
+      "ipAddress": "160.7.89.23",
+      "deviceId": "6d389aa7-a308-42d3-b8c4-604012c411bb",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 5.3) AppleWebKit/538.1.1 (KHTML, like Gecko) Chrome/30.0.825.0 Safari/538.1.1"
+    }
+  },
+  {
+    "id": "625b77e4-5719-4564-b595-23241ada3d9a",
+    "amount": 547.13,
+    "currency": "USD",
+    "merchant": "Kunze - Kertzmann",
+    "category": "Travel",
+    "location": "South Dusty, Turkmenistan",
+    "timestamp": "2025-05-27T07:17:57.566Z",
+    "status": "failed",
+    "isFraudulent": false,
+    "riskScore": 29,
+    "details": {
+      "ipAddress": "64.158.87.149",
+      "deviceId": "bee9f2b7-6bb3-496a-88f9-4818ee45fee7",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 5.3) AppleWebKit/538.0.1 (KHTML, like Gecko) Chrome/18.0.838.0 Safari/538.0.1"
+    }
+  },
+  {
+    "id": "f6311fd3-e714-475d-ae7f-0dc370d15f47",
+    "amount": 537.42,
+    "currency": "USD",
+    "merchant": "Abernathy, Heathcote and Hagenes",
+    "category": "Shopping",
+    "location": "South Mitchelstad, Qatar",
+    "timestamp": "2025-05-15T13:34:51.693Z",
+    "status": "pending",
+    "isFraudulent": false,
+    "riskScore": 33,
+    "details": {
+      "ipAddress": "132.100.246.14",
+      "deviceId": "75f73fbc-c5f3-4b10-917a-891f155df4c9",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 5.1) AppleWebKit/533.2.1 (KHTML, like Gecko) Chrome/13.0.845.0 Safari/533.2.1"
+    }
+  },
+  {
+    "id": "208fb15c-99ed-4fe1-8193-c086d3e67518",
+    "amount": 5.77,
+    "currency": "USD",
+    "merchant": "Feeney - Lebsack",
+    "category": "Transfer",
+    "location": "Highland, Central African Republic",
+    "timestamp": "2025-05-08T06:05:09.441Z",
+    "status": "failed",
+    "isFraudulent": false,
+    "riskScore": 52,
+    "details": {
+      "ipAddress": "194.102.64.28",
+      "deviceId": "af41491b-1481-4516-82ff-fb38e7f2a9b7",
+      "userAgent": "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 5.1; Trident/3.1)"
+    }
+  },
+  {
+    "id": "5f66b8b9-c521-457f-a17a-eae6e9242a46",
+    "amount": 838.72,
+    "currency": "USD",
+    "merchant": "Stanton, Borer and Thiel",
+    "category": "Entertainment",
+    "location": "Konopelskishire, Sudan",
+    "timestamp": "2025-05-24T20:07:38.113Z",
+    "status": "failed",
+    "isFraudulent": false,
+    "riskScore": 8,
+    "details": {
+      "ipAddress": "87.0.190.240",
+      "deviceId": "ae8f9836-56bf-4681-ae23-cddb7c095d6a",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 6.2) AppleWebKit/531.0.2 (KHTML, like Gecko) Chrome/13.0.887.0 Safari/531.0.2"
+    }
+  },
+  {
+    "id": "e2024647-47c4-4c92-85c9-a48e654ef190",
+    "amount": 573.16,
+    "currency": "USD",
+    "merchant": "Windler Inc",
+    "category": "Travel",
+    "location": "Nitzscheburgh, Reunion",
+    "timestamp": "2025-05-04T12:03:38.618Z",
+    "status": "completed",
+    "isFraudulent": false,
+    "riskScore": 48,
+    "details": {
+      "ipAddress": "206.159.82.107",
+      "deviceId": "c8f19673-e786-4a38-976d-5b19fb4218ba",
+      "userAgent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:9.4) Gecko/20100101 Firefox/9.4.7"
+    }
+  },
+  {
+    "id": "b1d72319-3d72-4e7a-a7df-4d3f631f2856",
+    "amount": 848.33,
+    "currency": "USD",
+    "merchant": "D'Amore - Lueilwitz",
+    "category": "Transfer",
+    "location": "Imaniton, Haiti",
+    "timestamp": "2025-05-06T23:55:15.887Z",
+    "status": "completed",
+    "isFraudulent": false,
+    "riskScore": 2,
+    "details": {
+      "ipAddress": "240.21.146.151",
+      "deviceId": "fe0e5ca8-37d3-43d1-8d04-f233d2bd7c8e",
+      "userAgent": "Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:11.9) Gecko/20100101 Firefox/11.9.4"
+    }
+  },
+  {
+    "id": "e0b188e5-18a5-442f-b1f0-bebe6cefe26e",
+    "amount": 560.49,
+    "currency": "USD",
+    "merchant": "Harvey, Zemlak and Feeney",
+    "category": "Shopping",
+    "location": "Bridgetmouth, Saint Lucia",
+    "timestamp": "2025-05-04T10:45:59.162Z",
+    "status": "completed",
+    "isFraudulent": false,
+    "riskScore": 42,
+    "details": {
+      "ipAddress": "228.170.79.44",
+      "deviceId": "ccdd2277-5292-465e-94e3-84dba3098f23",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_8)  AppleWebKit/532.0.1 (KHTML, like Gecko) Chrome/39.0.863.0 Safari/532.0.1"
+    }
+  },
+  {
+    "id": "0420bc01-2e35-48ed-93d9-28d40a0557a3",
+    "amount": 744.44,
+    "currency": "USD",
+    "merchant": "Rice, Bartoletti and Lowe",
+    "category": "Transfer",
+    "location": "Wymanborough, Algeria",
+    "timestamp": "2025-05-29T02:46:11.316Z",
+    "status": "failed",
+    "isFraudulent": false,
+    "riskScore": 8,
+    "details": {
+      "ipAddress": "192.158.17.207",
+      "deviceId": "758bf307-ba6b-4b2c-9231-50ca79e17c2c",
+      "userAgent": "Mozilla/5.0 (compatible; MSIE 8.0; Windows NT 6.3; Trident/5.0; .NET CLR 1.5.39314.4)"
+    }
+  },
+  {
+    "id": "f2357cc4-f708-42cc-af92-2d7532660bf7",
+    "amount": 631.4,
+    "currency": "USD",
+    "merchant": "McClure, Jerde and Renner",
+    "category": "Food & Dining",
+    "location": "Elenorastad, Russian Federation",
+    "timestamp": "2025-05-10T14:38:38.037Z",
+    "status": "pending",
+    "isFraudulent": false,
+    "riskScore": 31,
+    "details": {
+      "ipAddress": "37.26.49.29",
+      "deviceId": "941e6a96-e4bc-4814-a2c3-e8e498a134f2",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 5.0) AppleWebKit/537.0.1 (KHTML, like Gecko) Chrome/29.0.844.0 Safari/537.0.1"
+    }
+  },
+  {
+    "id": "646473a6-2caf-4a21-a1a4-f22d3217d668",
+    "amount": 308.92,
+    "currency": "USD",
+    "merchant": "Tromp, Stark and Dibbert",
+    "category": "Transfer",
+    "location": "New Zoeymouth, Gibraltar",
+    "timestamp": "2025-05-08T23:46:26.372Z",
+    "status": "failed",
+    "isFraudulent": false,
+    "riskScore": 57,
+    "details": {
+      "ipAddress": "196.0.24.0",
+      "deviceId": "88592703-c3b6-4b2d-9dfb-a02effadc0e1",
+      "userAgent": "Mozilla/5.0 (compatible; MSIE 8.0; Windows NT 5.0; Trident/5.0)"
+    }
+  },
+  {
+    "id": "de320571-8190-4e9f-93de-7bb8421e0da5",
+    "amount": 105.56,
+    "currency": "USD",
+    "merchant": "Dach, Bernier and Beier",
+    "category": "Food & Dining",
+    "location": "Davinside, Saint Barthelemy",
+    "timestamp": "2025-05-29T23:31:56.989Z",
+    "status": "failed",
+    "isFraudulent": false,
+    "riskScore": 32,
+    "details": {
+      "ipAddress": "123.196.113.106",
+      "deviceId": "2ccb602a-c7d6-4044-b629-e6d6b6ba9324",
+      "userAgent": "Mozilla/5.0 (Windows NT 6.0; rv:12.4) Gecko/20100101 Firefox/12.4.3"
+    }
+  },
+  {
+    "id": "f89028eb-11f3-496e-9fc6-ec9f0e64d1e0",
+    "amount": 125.27,
+    "currency": "USD",
+    "merchant": "Mosciski - Berge",
+    "category": "Shopping",
+    "location": "Zboncakberg, United States Minor Outlying Islands",
+    "timestamp": "2025-05-08T11:49:23.347Z",
+    "status": "failed",
+    "isFraudulent": false,
+    "riskScore": 16,
+    "details": {
+      "ipAddress": "196.72.74.138",
+      "deviceId": "343b6726-519b-49b9-81e5-77916fabcb4c",
+      "userAgent": "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.10.4; rv:9.6) Gecko/20100101 Firefox/9.6.0"
+    }
+  },
+  {
+    "id": "a307eb7f-763f-40ed-8667-3ab5ed410e26",
+    "amount": 129.79,
+    "currency": "USD",
+    "merchant": "Hayes Group",
+    "category": "Bills",
+    "location": "Busterstad, Central African Republic",
+    "timestamp": "2025-05-14T23:06:02.572Z",
+    "status": "pending",
+    "isFraudulent": false,
+    "riskScore": 39,
+    "details": {
+      "ipAddress": "91.152.104.219",
+      "deviceId": "3a6f2350-8890-4069-8141-ad50f135d1fd",
+      "userAgent": "Mozilla/5.0 (Windows NT 5.3; rv:5.1) Gecko/20100101 Firefox/5.1.0"
+    }
+  },
+  {
+    "id": "64bf3389-0acd-4495-a5d9-3c7ee5c5c2b7",
+    "amount": 308.57,
+    "currency": "USD",
+    "merchant": "Kuhn Group",
+    "category": "Transfer",
+    "location": "Quigleyport, Burkina Faso",
+    "timestamp": "2025-05-19T10:32:33.606Z",
+    "status": "completed",
+    "isFraudulent": false,
+    "riskScore": 16,
+    "details": {
+      "ipAddress": "92.222.165.56",
+      "deviceId": "65efbb5c-8a7a-4844-bfe3-b22979f9268d",
+      "userAgent": "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_9_0 rv:5.0; GV) AppleWebKit/538.1.1 (KHTML, like Gecko) Version/7.0.4 Safari/538.1.1"
+    }
+  },
+  {
+    "id": "f15a849c-03ac-4d73-9629-08665e30e22f",
+    "amount": 441.68,
+    "currency": "USD",
+    "merchant": "Grady Inc",
+    "category": "Shopping",
+    "location": "Bernierfort, Faroe Islands",
+    "timestamp": "2025-05-03T19:37:23.216Z",
+    "status": "completed",
+    "isFraudulent": false,
+    "riskScore": 56,
+    "details": {
+      "ipAddress": "11.97.237.62",
+      "deviceId": "20395cba-a611-412d-9123-c4a55458fd30",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 6.3) AppleWebKit/531.2.1 (KHTML, like Gecko) Chrome/36.0.838.0 Safari/531.2.1"
+    }
+  },
+  {
+    "id": "b72be8bf-4c58-4fba-bc39-c899679fb96e",
+    "amount": 618.49,
+    "currency": "USD",
+    "merchant": "Lowe Inc",
+    "category": "Transfer",
+    "location": "Mollieton, Djibouti",
+    "timestamp": "2025-06-01T12:58:06.967Z",
+    "status": "completed",
+    "isFraudulent": false,
+    "riskScore": 13,
+    "details": {
+      "ipAddress": "122.141.222.56",
+      "deviceId": "ee848fe3-8ec3-44c4-93f8-6e7af6ebf754",
+      "userAgent": "Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:13.6) Gecko/20100101 Firefox/13.6.1"
+    }
+  },
+  {
+    "id": "53e1751f-92a3-4862-9a7c-e70103b2e03c",
+    "amount": 693.12,
+    "currency": "USD",
+    "merchant": "Stoltenberg, Hammes and Collier",
+    "category": "Travel",
+    "location": "Haliemouth, Latvia",
+    "timestamp": "2025-05-31T16:37:50.695Z",
+    "status": "pending",
+    "isFraudulent": false,
+    "riskScore": 53,
+    "details": {
+      "ipAddress": "199.207.164.186",
+      "deviceId": "29014877-469d-4c94-a4f5-f171ff03b5d6",
+      "userAgent": "Mozilla/5.0 (compatible; MSIE 8.0; Windows NT 6.0; Trident/6.1; .NET CLR 1.3.61265.7)"
+    }
+  },
+  {
+    "id": "59a31def-ce25-4220-9057-32c2f34e6aae",
+    "amount": 647.22,
+    "currency": "USD",
+    "merchant": "Welch, Erdman and Wiza",
+    "category": "Entertainment",
+    "location": "Lynwood, Singapore",
+    "timestamp": "2025-05-11T15:48:57.578Z",
+    "status": "completed",
+    "isFraudulent": false,
+    "riskScore": 8,
+    "details": {
+      "ipAddress": "155.136.233.19",
+      "deviceId": "d3296c90-6e21-4933-b39b-6e4f68d39b48",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 6.2) AppleWebKit/532.1.0 (KHTML, like Gecko) Chrome/21.0.882.0 Safari/532.1.0"
+    }
+  },
+  {
+    "id": "143a6e44-56c2-44d2-a703-e69231c16b80",
+    "amount": 112.1,
+    "currency": "USD",
+    "merchant": "Stracke, Marks and Hayes",
+    "category": "Bills",
+    "location": "Port Naomiport, Western Sahara",
+    "timestamp": "2025-05-08T03:10:12.356Z",
+    "status": "failed",
+    "isFraudulent": false,
+    "riskScore": 6,
+    "details": {
+      "ipAddress": "234.145.5.10",
+      "deviceId": "add8e9b3-edce-4d1d-9f1d-9217fb554b55",
+      "userAgent": "Mozilla/5.0 (Windows NT 5.1; WOW64; rv:13.6) Gecko/20100101 Firefox/13.6.0"
+    }
+  },
+  {
+    "id": "c9b4bcd3-1842-4ce1-925a-7dac1ba91c33",
+    "amount": 546.77,
+    "currency": "USD",
+    "merchant": "Herman, Tromp and Muller",
+    "category": "Travel",
+    "location": "Port Rhodaberg, Gabon",
+    "timestamp": "2025-05-04T05:19:27.472Z",
+    "status": "pending",
+    "isFraudulent": false,
+    "riskScore": 57,
+    "details": {
+      "ipAddress": "219.182.236.170",
+      "deviceId": "d5ea19a4-15f6-45c8-94d0-56ff5a955a53",
+      "userAgent": "Mozilla/5.0 (Windows NT 6.1; Trident/7.0; Touch; rv:11.0) like Gecko"
+    }
+  },
+  {
+    "id": "4125c070-d130-4f6f-8136-333c00dade5d",
+    "amount": 220.38,
+    "currency": "USD",
+    "merchant": "Tillman, Treutel and Hand",
+    "category": "Food & Dining",
+    "location": "South Rowena, Bahrain",
+    "timestamp": "2025-05-13T16:14:02.151Z",
+    "status": "failed",
+    "isFraudulent": false,
+    "riskScore": 58,
+    "details": {
+      "ipAddress": "99.128.26.220",
+      "deviceId": "ef538171-9d31-4b49-af2b-89aecfb1be43",
+      "userAgent": "Mozilla/5.0 (Windows NT 6.0; rv:6.7) Gecko/20100101 Firefox/6.7.7"
+    }
+  },
+  {
+    "id": "42354692-b1bc-4371-a727-530c009ba0ab",
+    "amount": 628.03,
+    "currency": "USD",
+    "merchant": "Langosh - Kreiger",
+    "category": "Bills",
+    "location": "Jakeside, Mozambique",
+    "timestamp": "2025-05-27T12:35:20.920Z",
+    "status": "pending",
+    "isFraudulent": false,
+    "riskScore": 44,
+    "details": {
+      "ipAddress": "34.109.78.126",
+      "deviceId": "dbf74b94-229b-4547-97c6-980ba682fb29",
+      "userAgent": "Mozilla/5.0 (Windows NT 6.1; rv:5.2) Gecko/20100101 Firefox/5.2.6"
+    }
+  },
+  {
+    "id": "53d8b0e0-9504-4d53-a502-731afd2460cc",
+    "amount": 766.1,
+    "currency": "USD",
+    "merchant": "Cremin, Kirlin and Orn",
+    "category": "Shopping",
+    "location": "East Coraside, Lithuania",
+    "timestamp": "2025-05-21T18:23:53.192Z",
+    "status": "failed",
+    "isFraudulent": false,
+    "riskScore": 31,
+    "details": {
+      "ipAddress": "203.84.62.239",
+      "deviceId": "2c61e0a3-5e92-4eb6-a8c5-9d83612ad45e",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 5.0) AppleWebKit/533.2.2 (KHTML, like Gecko) Chrome/36.0.814.0 Safari/533.2.2"
+    }
+  },
+  {
+    "id": "13ee3ceb-b2a6-4d10-bbec-341539d00f88",
+    "amount": 702.49,
+    "currency": "USD",
+    "merchant": "Wisozk - Cummerata",
+    "category": "Entertainment",
+    "location": "Faheyport, Gabon",
+    "timestamp": "2025-05-16T11:28:17.122Z",
+    "status": "failed",
+    "isFraudulent": false,
+    "riskScore": 25,
+    "details": {
+      "ipAddress": "245.244.159.197",
+      "deviceId": "fa112737-4168-4ce6-bb5c-a05c9aab24c8",
+      "userAgent": "Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko"
+    }
+  },
+  {
+    "id": "4ea09eaf-3a30-404d-b9b6-2a9c45943d13",
+    "amount": 465.86,
+    "currency": "USD",
+    "merchant": "Hauck - Kassulke",
+    "category": "Bills",
+    "location": "Schoenside, Djibouti",
+    "timestamp": "2025-06-02T04:08:00.059Z",
+    "status": "pending",
+    "isFraudulent": false,
+    "riskScore": 18,
+    "details": {
+      "ipAddress": "97.135.193.52",
+      "deviceId": "b0704736-6428-4870-809d-736ead6c859b",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 6.1) AppleWebKit/537.1.0 (KHTML, like Gecko) Chrome/38.0.875.0 Safari/537.1.0"
+    }
+  },
+  {
+    "id": "cc7a64f2-e720-427d-8621-1da36fc54084",
+    "amount": 170.72,
+    "currency": "USD",
+    "merchant": "Hintz - Willms",
+    "category": "Transfer",
+    "location": "East Enid, South Georgia and the South Sandwich Islands",
+    "timestamp": "2025-05-29T04:24:58.815Z",
+    "status": "pending",
+    "isFraudulent": false,
+    "riskScore": 47,
+    "details": {
+      "ipAddress": "107.71.26.44",
+      "deviceId": "fb1bcdc5-ad30-4676-aef2-463916a2fb8e",
+      "userAgent": "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_9_8)  AppleWebKit/535.1.1 (KHTML, like Gecko) Chrome/18.0.884.0 Safari/535.1.1"
+    }
+  },
+  {
+    "id": "dd08e847-d427-43f8-9e87-4c6361a10f3a",
+    "amount": 296.14,
+    "currency": "USD",
+    "merchant": "Lang Inc",
+    "category": "Travel",
+    "location": "East Emmanueltown, Andorra",
+    "timestamp": "2025-05-13T23:50:34.867Z",
+    "status": "failed",
+    "isFraudulent": false,
+    "riskScore": 56,
+    "details": {
+      "ipAddress": "30.58.74.42",
+      "deviceId": "03ecfd7e-90a5-4e81-a633-9df918b57896",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 6.3) AppleWebKit/533.1.2 (KHTML, like Gecko) Chrome/34.0.844.0 Safari/533.1.2"
+    }
+  },
+  {
+    "id": "8a49d1fa-26df-4dd1-85f0-d3662be7511f",
+    "amount": 679.55,
+    "currency": "USD",
+    "merchant": "Volkman - Williamson",
+    "category": "Transfer",
+    "location": "Imogeneberg, Belarus",
+    "timestamp": "2025-05-30T11:29:44.677Z",
+    "status": "failed",
+    "isFraudulent": false,
+    "riskScore": 42,
+    "details": {
+      "ipAddress": "163.6.181.7",
+      "deviceId": "e1db2489-45c1-44fe-bf4e-9ef12d471888",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 5.1) AppleWebKit/535.0.0 (KHTML, like Gecko) Chrome/30.0.869.0 Safari/535.0.0"
+    }
+  },
+  {
+    "id": "079f224b-955b-495f-8112-cebaa98a97bd",
+    "amount": 210.1,
+    "currency": "USD",
+    "merchant": "Gibson and Sons",
+    "category": "Bills",
+    "location": "Harlingen, Niue",
+    "timestamp": "2025-05-14T07:01:18.176Z",
+    "status": "completed",
+    "isFraudulent": false,
+    "riskScore": 26,
+    "details": {
+      "ipAddress": "53.166.79.209",
+      "deviceId": "9775c8fe-ad74-4e0a-80e7-115d7804dff6",
+      "userAgent": "Mozilla/5.0 (Windows NT 6.0; WOW64; rv:6.8) Gecko/20100101 Firefox/6.8.4"
+    }
+  },
+  {
+    "id": "ddd3c991-974f-4963-9d0a-f48c082d7309",
+    "amount": 7.85,
+    "currency": "USD",
+    "merchant": "Emmerich - Kerluke",
+    "category": "Shopping",
+    "location": "East Augustinemouth, Morocco",
+    "timestamp": "2025-05-08T22:32:48.578Z",
+    "status": "pending",
+    "isFraudulent": false,
+    "riskScore": 4,
+    "details": {
+      "ipAddress": "167.227.90.109",
+      "deviceId": "e466bd89-998a-462d-a5e9-39e53ae08970",
+      "userAgent": "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_3 rv:4.0; RU) AppleWebKit/532.1.0 (KHTML, like Gecko) Version/5.1.9 Safari/532.1.0"
+    }
+  },
+  {
+    "id": "956d05f0-aa95-43c3-959e-6655e8cbeb4d",
+    "amount": 667.52,
+    "currency": "USD",
+    "merchant": "Boehm - Tromp",
+    "category": "Travel",
+    "location": "East Fredrick, Papua New Guinea",
+    "timestamp": "2025-05-18T04:30:35.223Z",
+    "status": "failed",
+    "isFraudulent": false,
+    "riskScore": 4,
+    "details": {
+      "ipAddress": "39.154.160.201",
+      "deviceId": "a819447b-c1ea-4c34-9db1-8eba4e8d674b",
+      "userAgent": "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.0; Trident/4.0)"
+    }
+  },
+  {
+    "id": "172f75c6-aa8c-452d-9c4d-7b9e54080a43",
+    "amount": 494.88,
+    "currency": "USD",
+    "merchant": "Emard - Lakin",
+    "category": "Entertainment",
+    "location": "Strackeshire, Paraguay",
+    "timestamp": "2025-05-18T23:10:41.183Z",
+    "status": "completed",
+    "isFraudulent": false,
+    "riskScore": 31,
+    "details": {
+      "ipAddress": "65.121.59.232",
+      "deviceId": "7205a4b3-5d06-494e-b414-32950029401f",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 6.1) AppleWebKit/533.0.1 (KHTML, like Gecko) Chrome/25.0.805.0 Safari/533.0.1"
+    }
+  },
+  {
+    "id": "008c44d3-79e4-4442-b890-823015db7154",
+    "amount": 142.61,
+    "currency": "USD",
+    "merchant": "Bogan Group",
+    "category": "Travel",
+    "location": "West Judd, Ghana",
+    "timestamp": "2025-05-04T22:20:19.276Z",
+    "status": "failed",
+    "isFraudulent": false,
+    "riskScore": 22,
+    "details": {
+      "ipAddress": "160.83.145.95",
+      "deviceId": "2587ad6f-5758-4247-8d04-71d6e21ab60f",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 6.0) AppleWebKit/536.2.0 (KHTML, like Gecko) Chrome/32.0.855.0 Safari/536.2.0"
+    }
+  },
+  {
+    "id": "799dce2d-6b45-495b-b5cf-307c3832a621",
+    "amount": 345.92,
+    "currency": "USD",
+    "merchant": "Schinner LLC",
+    "category": "Transfer",
+    "location": "New Melisahaven, Brunei Darussalam",
+    "timestamp": "2025-05-21T00:36:47.678Z",
+    "status": "suspicious",
+    "isFraudulent": true,
+    "riskScore": 78,
+    "details": {
+      "ipAddress": "46.32.91.246",
+      "deviceId": "30a3dbdd-7cd7-446d-a496-237dc4e2fa11",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_5_9)  AppleWebKit/537.0.0 (KHTML, like Gecko) Chrome/19.0.843.0 Safari/537.0.0"
+    }
+  },
+  {
+    "id": "922673e8-80d1-43b5-831d-e35572a8bc86",
+    "amount": 401.61,
+    "currency": "USD",
+    "merchant": "West Group",
+    "category": "Food & Dining",
+    "location": "Niaport, Niger",
+    "timestamp": "2025-05-13T16:23:52.819Z",
+    "status": "completed",
+    "isFraudulent": false,
+    "riskScore": 13,
+    "details": {
+      "ipAddress": "41.67.3.161",
+      "deviceId": "28b67f12-6c0f-496c-b17e-df4d82d8c249",
+      "userAgent": "Mozilla/5.0 (compatible; MSIE 8.0; Windows NT 5.2; Trident/3.1)"
+    }
+  },
+  {
+    "id": "2231cc93-6e56-43be-885c-b01d07d6f3ee",
+    "amount": 718.7,
+    "currency": "USD",
+    "merchant": "Swaniawski - Dach",
+    "category": "Travel",
+    "location": "Sanfordton, Brazil",
+    "timestamp": "2025-05-15T07:36:58.193Z",
+    "status": "pending",
+    "isFraudulent": false,
+    "riskScore": 23,
+    "details": {
+      "ipAddress": "82.254.17.248",
+      "deviceId": "006adfe4-5140-4004-9d3e-c26b7c7f3189",
+      "userAgent": "Mozilla/5.0 (compatible; MSIE 7.0; Windows NT 6.0; Trident/4.0)"
+    }
+  },
+  {
+    "id": "134beebf-64c7-4b4e-af77-fe6161a22200",
+    "amount": 637.09,
+    "currency": "USD",
+    "merchant": "Kertzmann - Jaskolski",
+    "category": "Transfer",
+    "location": "South Cleta, Turkey",
+    "timestamp": "2025-05-03T16:29:53.936Z",
+    "status": "completed",
+    "isFraudulent": false,
+    "riskScore": 33,
+    "details": {
+      "ipAddress": "42.165.113.159",
+      "deviceId": "ac451010-6dd3-4379-a63a-c1dc015ab853",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3)  AppleWebKit/535.0.0 (KHTML, like Gecko) Chrome/19.0.853.0 Safari/535.0.0"
+    }
+  },
+  {
+    "id": "208208a2-7447-4e17-a0d4-59f7be5c6bbc",
+    "amount": 180.18,
+    "currency": "USD",
+    "merchant": "Quitzon - Denesik",
+    "category": "Food & Dining",
+    "location": "Tracy, Christmas Island",
+    "timestamp": "2025-05-03T20:04:18.063Z",
+    "status": "completed",
+    "isFraudulent": false,
+    "riskScore": 25,
+    "details": {
+      "ipAddress": "35.52.204.110",
+      "deviceId": "51e7b3f8-6c26-40b4-b66b-4bb5c0c3b1a4",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_5)  AppleWebKit/532.2.1 (KHTML, like Gecko) Chrome/18.0.850.0 Safari/532.2.1"
+    }
+  },
+  {
+    "id": "40e48a8d-ea3c-4ebe-99db-5af0a61a91d5",
+    "amount": 136.41,
+    "currency": "USD",
+    "merchant": "Conroy Group",
+    "category": "Transfer",
+    "location": "Sylviachester, Bahamas",
+    "timestamp": "2025-05-09T20:06:40.474Z",
+    "status": "suspicious",
+    "isFraudulent": true,
+    "riskScore": 78,
+    "details": {
+      "ipAddress": "108.116.126.25",
+      "deviceId": "0f2706f1-9c4b-4f59-a742-d5ce312ba820",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 6.1) AppleWebKit/537.2.1 (KHTML, like Gecko) Chrome/15.0.807.0 Safari/537.2.1"
+    }
+  },
+  {
+    "id": "9c2ffec4-0189-4a59-94aa-ef896c718f2a",
+    "amount": 78.87,
+    "currency": "USD",
+    "merchant": "Lockman Inc",
+    "category": "Entertainment",
+    "location": "Schmelerborough, New Zealand",
+    "timestamp": "2025-05-08T15:49:34.242Z",
+    "status": "suspicious",
+    "isFraudulent": true,
+    "riskScore": 78,
+    "details": {
+      "ipAddress": "182.195.30.237",
+      "deviceId": "d7784892-e38c-4a7e-921b-72af53a7ca78",
+      "userAgent": "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:10.9) Gecko/20100101 Firefox/10.9.0"
+    }
+  },
+  {
+    "id": "ba1454a9-0334-4d00-8926-c0e94761f12e",
+    "amount": 456.16,
+    "currency": "USD",
+    "merchant": "Paucek and Sons",
+    "category": "Food & Dining",
+    "location": "Kadetown, Somalia",
+    "timestamp": "2025-05-27T14:07:43.681Z",
+    "status": "failed",
+    "isFraudulent": false,
+    "riskScore": 16,
+    "details": {
+      "ipAddress": "73.185.201.163",
+      "deviceId": "7797b044-b0ee-4937-a8f5-21c2636e7b0b",
+      "userAgent": "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.3; Trident/3.1; .NET CLR 1.8.91951.2)"
+    }
+  },
+  {
+    "id": "dac65868-bb8e-4ea4-8117-2d797909bf28",
+    "amount": 771.81,
+    "currency": "USD",
+    "merchant": "Abshire - Gulgowski",
+    "category": "Entertainment",
+    "location": "Michealstad, Ukraine",
+    "timestamp": "2025-05-12T03:32:36.341Z",
+    "status": "failed",
+    "isFraudulent": false,
+    "riskScore": 47,
+    "details": {
+      "ipAddress": "58.14.15.43",
+      "deviceId": "cfc32197-d2d7-4f30-b25a-095353b91b1d",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 5.3) AppleWebKit/536.1.0 (KHTML, like Gecko) Chrome/13.0.870.0 Safari/536.1.0"
+    }
+  },
+  {
+    "id": "5106fc9c-abd5-402c-a4a2-0fa8e0d5c8d3",
+    "amount": 754.68,
+    "currency": "USD",
+    "merchant": "Upton, Upton and Crist",
+    "category": "Transfer",
+    "location": "Yorba Linda, Hungary",
+    "timestamp": "2025-05-12T17:21:48.559Z",
+    "status": "pending",
+    "isFraudulent": false,
+    "riskScore": 46,
+    "details": {
+      "ipAddress": "255.87.38.23",
+      "deviceId": "607d2d8d-8305-48bf-9715-679c8fa919ff",
+      "userAgent": "Mozilla/5.0 (compatible; MSIE 7.0; Windows NT 5.2; Trident/7.1)"
+    }
+  },
+  {
+    "id": "17411697-5986-4ae3-a97d-b4dc8d4ac662",
+    "amount": 799.82,
+    "currency": "USD",
+    "merchant": "Runte, Harber and Rath",
+    "category": "Transfer",
+    "location": "Gary, Sao Tome and Principe",
+    "timestamp": "2025-05-22T12:48:31.057Z",
+    "status": "completed",
+    "isFraudulent": false,
+    "riskScore": 37,
+    "details": {
+      "ipAddress": "109.200.47.141",
+      "deviceId": "b38682ea-43fb-4887-a424-c811fe6b640b",
+      "userAgent": "Mozilla/5.0 (Windows NT 5.1; Win64; x64; rv:14.5) Gecko/20100101 Firefox/14.5.4"
+    }
+  },
+  {
+    "id": "10fe5361-6882-480c-ac52-62bec5fbf258",
+    "amount": 457.27,
+    "currency": "USD",
+    "merchant": "Mayert, Funk and Schamberger",
+    "category": "Transfer",
+    "location": "Leilaniborough, San Marino",
+    "timestamp": "2025-06-01T21:49:43.774Z",
+    "status": "pending",
+    "isFraudulent": false,
+    "riskScore": 26,
+    "details": {
+      "ipAddress": "76.147.208.27",
+      "deviceId": "362ff4ad-04b4-4ac0-8da5-5890b6ee7f91",
+      "userAgent": "Mozilla/5.0 (Windows NT 5.0; rv:15.3) Gecko/20100101 Firefox/15.3.4"
+    }
+  },
+  {
+    "id": "9475c1b4-3838-4df7-9296-b7f2657f56a1",
+    "amount": 446.68,
+    "currency": "USD",
+    "merchant": "Waters, Greenholt and Walter",
+    "category": "Shopping",
+    "location": "Lake Kayceeshire, Ireland",
+    "timestamp": "2025-05-11T09:03:15.239Z",
+    "status": "failed",
+    "isFraudulent": false,
+    "riskScore": 35,
+    "details": {
+      "ipAddress": "80.128.179.98",
+      "deviceId": "e97fafb9-7451-472e-a5e2-88f12f8a64c0",
+      "userAgent": "Mozilla/5.0 (Windows NT 5.1; rv:14.8) Gecko/20100101 Firefox/14.8.0"
+    }
+  },
+  {
+    "id": "3e656f34-231d-4cb9-ad2d-3cffcde52175",
+    "amount": 50.61,
+    "currency": "USD",
+    "merchant": "Ward LLC",
+    "category": "Transfer",
+    "location": "New Gunner, Somalia",
+    "timestamp": "2025-05-07T13:20:30.501Z",
+    "status": "pending",
+    "isFraudulent": false,
+    "riskScore": 45,
+    "details": {
+      "ipAddress": "17.175.158.194",
+      "deviceId": "f6181d67-d2f6-49e5-9987-8cc1f2f920c7",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 6.1) AppleWebKit/532.1.0 (KHTML, like Gecko) Chrome/26.0.841.0 Safari/532.1.0"
+    }
+  },
+  {
+    "id": "f9f63b50-3f5c-42e9-b809-464132a78401",
+    "amount": 467.95,
+    "currency": "USD",
+    "merchant": "Witting, Fay and Breitenberg",
+    "category": "Transfer",
+    "location": "Cordiaville, Netherlands Antilles",
+    "timestamp": "2025-05-07T01:26:14.099Z",
+    "status": "pending",
+    "isFraudulent": false,
+    "riskScore": 9,
+    "details": {
+      "ipAddress": "76.78.216.3",
+      "deviceId": "d958b28f-c22e-4ea5-bf76-c731c6ecfe77",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 6.3) AppleWebKit/536.1.0 (KHTML, like Gecko) Chrome/24.0.853.0 Safari/536.1.0"
+    }
+  },
+  {
+    "id": "cd44f75f-805b-4c15-8224-86de70fafa02",
+    "amount": 399.57,
+    "currency": "USD",
+    "merchant": "Ruecker - Cassin",
+    "category": "Bills",
+    "location": "Mountain View, Liechtenstein",
+    "timestamp": "2025-05-05T04:06:37.254Z",
+    "status": "failed",
+    "isFraudulent": false,
+    "riskScore": 46,
+    "details": {
+      "ipAddress": "86.159.180.112",
+      "deviceId": "6c82765d-f131-4308-ac56-9b298d4215e8",
+      "userAgent": "Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko"
+    }
+  },
+  {
+    "id": "4428f66c-5824-4ea7-a4a5-42e0edbf3737",
+    "amount": 747.05,
+    "currency": "USD",
+    "merchant": "Walker, Ziemann and Klein",
+    "category": "Food & Dining",
+    "location": "New Dean, Lebanon",
+    "timestamp": "2025-05-07T08:20:00.892Z",
+    "status": "failed",
+    "isFraudulent": false,
+    "riskScore": 7,
+    "details": {
+      "ipAddress": "200.252.128.84",
+      "deviceId": "0067d876-3927-4132-953f-c0ceb26f385a",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 6.2) AppleWebKit/536.0.2 (KHTML, like Gecko) Chrome/20.0.849.0 Safari/536.0.2"
+    }
+  },
+  {
+    "id": "45102c27-eb4f-4f0b-8dc3-49253d54ed20",
+    "amount": 241.72,
+    "currency": "USD",
+    "merchant": "Hauck Inc",
+    "category": "Shopping",
+    "location": "North Amanda, Guyana",
+    "timestamp": "2025-05-14T06:20:21.920Z",
+    "status": "completed",
+    "isFraudulent": false,
+    "riskScore": 34,
+    "details": {
+      "ipAddress": "55.83.230.167",
+      "deviceId": "077d6c16-2e1f-4ebd-8243-e2d959a0c59a",
+      "userAgent": "Mozilla/5.0 (Windows NT 5.1; rv:9.8) Gecko/20100101 Firefox/9.8.4"
+    }
+  },
+  {
+    "id": "efde909c-2953-40d5-ad0a-5a83f56a59a5",
+    "amount": 93.11,
+    "currency": "USD",
+    "merchant": "Nader, Wolff and Casper",
+    "category": "Food & Dining",
+    "location": "South Lenorahaven, Cape Verde",
+    "timestamp": "2025-05-29T10:28:35.583Z",
+    "status": "suspicious",
+    "isFraudulent": true,
+    "riskScore": 96,
+    "details": {
+      "ipAddress": "15.57.220.52",
+      "deviceId": "4af02956-91db-41aa-948e-0421ed16e480",
+      "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 5.3) AppleWebKit/533.0.1 (KHTML, like Gecko) Chrome/18.0.831.0 Safari/533.0.1"
+    }
+  }
+]

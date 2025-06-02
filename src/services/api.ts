@@ -12,10 +12,62 @@ interface ErrorResponse {
 }
 
 export interface TransactionData {
-  amount: number;
+  amount: number | string;
+  currency?: string;
   merchant: string;
+  merchantCategory?: string;
   location: string;
+  country?: string;
+  ipAddress?: string;
+  deviceId?: string;
+  cardPresent?: boolean;
+  isRecurring?: boolean;
+  customerId?: string;
+  transactionTime?: string;
+  transactionId?: string;
   [key: string]: any;
+}
+
+export interface TransactionMetadata {
+  id?: string;
+  timestamp: string;
+  processingTimeMs: number;
+  version: string;
+  model: string;
+  environment: 'development' | 'staging' | 'production';
+}
+
+export interface TransactionDetails {
+  id?: string;
+  merchant: string;
+  merchantCategory?: string;
+  country?: string;
+  currency: string;
+  amount: number;
+  isCardPresent: boolean;
+  isRecurring: boolean;
+  deviceType?: string;
+  ipAddress?: string;
+  userAgent?: string;
+  billingAddressMatch?: boolean;
+  shippingAddressMatch?: boolean;
+  previousPurchases?: number;
+  daysSinceFirstPurchase?: number;
+  transactionType: 'purchase' | 'withdrawal' | 'transfer' | 'payment' | 'other';
+  paymentMethod: 'credit_card' | 'debit_card' | 'bank_transfer' | 'digital_wallet' | 'other';
+  deviceId?: string;
+  customerId?: string;
+}
+
+export interface RiskScoreBreakdown {
+  amountRisk: number;
+  merchantRisk: number;
+  locationRisk: number;
+  timeRisk: number;
+  patternRisk: number;
+  velocityRisk: number;
+  deviceRisk: number;
+  behavioralRisk: number;
 }
 
 export interface RiskScoreData {
@@ -25,15 +77,45 @@ export interface RiskScoreData {
 }
 
 export interface AnalysisResult {
+  // Core risk assessment
   riskScore: number;
   riskLevel: 'Low' | 'Medium' | 'High';
-  explanation: string;
   confidence: number;
-  timestamp: string;
-  error?: string;
-  transactionId?: string;
-  customerId?: string;
-  recommendedAction?: string;
+  riskFactors: string[];
+  rulesTriggered: string[];
+  
+  // Transaction details
+  transaction: TransactionDetails;
+  
+  // Normalized amount information
+  normalizedAmount: {
+    amount: number;
+    currency: string;
+    originalAmount: number;
+    originalCurrency: string;
+    exchangeRate?: number;
+  };
+  
+  // Risk analysis details
+  riskBreakdown: RiskScoreBreakdown;
+  
+  // Transaction history context
+  similarTransactions?: {
+    count: number;
+    amount: number;
+    currency: string;
+  };
+  
+  // Human-readable outputs
+  explanation: string;
+  recommendedAction: string;
+  insights: string[];
+  
+  // Metadata
+  metadata: TransactionMetadata;
+  
+  // Backward compatibility
+  isFallback?: boolean;
   [key: string]: any;
 }
 

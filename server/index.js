@@ -1,11 +1,60 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const { exec } = require('child_process');
+const { promisify } = require('util');
 const { auth } = require('express-oauth2-jwt-bearer');
 const aiProvider = require('./aiProviderService');
+const hitlMiddleware = require('./middleware/hitlMiddleware');
+const reviewRoutes = require('./routes/reviewRoutes');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const execPromise = promisify(exec);
+
+// Server configuration
+const HOST = '0.0.0.0';  // Listen on all network interfaces
+const START_PORT = 3000;  // Starting port number
+const MAX_PORT_ATTEMPTS = 10;  // Maximum number of ports to try
+let currentPort = START_PORT;
+
+// Utility function to check if port is in use
+async function isPortInUse(port) {
+  try {
+    const { stdout } = await execPromise(`netstat -ano | findstr :${port}`);
+    return stdout.trim().length > 0;
+  } catch (error) {
+    return false;
+  }
+}
+
+// Utility function to kill process on port
+async function killProcessOnPort(port) {
+  try {
+    const { stdout } = await execPromise(`netstat -ano | findstr :${port}`);
+    const lines = stdout.trim().split('\n');
+    const pids = new Set();
+    
+    lines.forEach(line => {
+      const match = line.trim().split(/\s+/);
+      if (match.length > 4) {
+        pids.add(match[4]);
+      }
+    });
+
+    for (const pid of pids) {
+      try {
+        console.log(`Killing process with PID: ${pid}`);
+        await execPromise(`taskkill /F /PID ${pid}`);
+      } catch (err) {
+        console.error(`Failed to kill process ${pid}:`, err.message);
+      }
+    }
+    return true;
+  } catch (error) {
+    console.error('Error killing process on port:', error.message);
+    return false;
+  }
+}
 
 // Middleware
 app.use(cors());
@@ -79,26 +128,67 @@ async function analyzeTransactionWithAI(transactionData) {
 
 // Enhanced logging middleware
 app.use((req, res, next) => {
-  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  const start = Date.now();
+  const requestId = Math.random().toString(36).substring(2, 10);
+  
+  console.log(`[${new Date().toISOString()}] [${requestId}] ${req.method} ${req.url}`);
+  
+  // Log request headers for debugging
+  console.log(`[${requestId}] Headers:`, JSON.stringify(req.headers, null, 2));
+  
+  // Log request body if present
   if (Object.keys(req.body).length > 0) {
-    console.log('Request body:', JSON.stringify(req.body, null, 2));
+    console.log(`[${requestId}] Request body:`, JSON.stringify(req.body, null, 2));
   }
+  
+  // Log response
+  const originalSend = res.send;
+  res.send = function(body) {
+    const responseTime = Date.now() - start;
+    console.log(`[${requestId}] Response (${responseTime}ms):`, JSON.stringify(body, null, 2));
+    return originalSend.call(this, body);
+  };
+  
+  // Log errors
+  res.on('finish', () => {
+    const responseTime = Date.now() - start;
+    console.log(`[${requestId}] Completed ${res.statusCode} in ${responseTime}ms`);
+  });
+  
   next();
 });
 
-// Middleware
+// Core Middleware
 app.use(cors());
 app.use(express.json());
 
-// Auth0 configuration
-const checkJwt = auth({
-  audience: process.env.AUTH0_AUDIENCE,
-  issuerBaseURL: `https://${process.env.AUTH0_DOMAIN}/`,
-  tokenSigningAlg: 'RS256'
-});
+// HITL Middleware
+app.use(hitlMiddleware);
+
+// Review Routes
+app.use('/api/reviews', reviewRoutes);
+
+// Import auth middleware
+const { checkJwt } = require('./middleware/auth');
 
 // Public test endpoint (for development only)
-app.post('/api/test/analyze/transaction', async (req, res) => {
+app.post('/api/test/analyze/transaction', (req, res) => {
+  console.log('Test endpoint hit with body:', req.body);
+  
+  // Simple echo response with additional fields
+  const response = {
+    success: true,
+    message: 'Test endpoint working',
+    request: req.body,
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV || 'development'
+  };
+  
+  res.json(response);
+});
+
+// Transaction analysis endpoint with HITL integration
+app.post('/api/analyze/transaction', checkJwt, async (req, res) => {
   console.log('Received test request at:', new Date().toISOString());
   try {
     const { amount, merchant, location } = req.body;
@@ -142,8 +232,11 @@ app.post('/api/test/analyze/transaction', async (req, res) => {
   }
 });
 
-// AI-Powered Transaction Analysis Endpoint (secured with Auth0)
+// AI-Powered Transaction Analysis Endpoint
 app.post('/api/analyze/transaction', checkJwt, async (req, res) => {
+  console.log('🔍 Transaction analysis endpoint hit');
+  console.log('Auth:', req.auth);  // Log the auth object
+  console.log('Request body:', req.body);  // Log the request body
   const startTime = Date.now();
   const requestId = Math.random().toString(36).substring(2, 15);
   
@@ -172,11 +265,22 @@ app.post('/api/analyze/transaction', checkJwt, async (req, res) => {
       const responseTime = Date.now() - startTime;
       console.log(`[${requestId}] Analysis completed in ${responseTime}ms`);
       
-      res.json({
+      // The HITL middleware will handle the response and may modify it
+      // to include review status if human review is needed
+      const response = {
         ...analysis,
         requestId,
-        responseTime: `${responseTime}ms`
-      });
+        responseTime: `${responseTime}ms`,
+        // These fields will be set by the HITL middleware if needed:
+        // - requiresHumanReview: boolean
+        // - reviewId: string
+        // - reviewStatus: 'pending'|'approved'|'rejected'
+      };
+      
+      // Store the response in the request object for the HITL middleware
+      req._hitlResponse = response;
+      
+      res.json(response);
     } catch (error) {
       const errorMsg = error.message || 'Unknown error';
       console.error(`[${requestId}] AI Analysis Error:`, errorMsg);
@@ -184,13 +288,14 @@ app.post('/api/analyze/transaction', checkJwt, async (req, res) => {
       // Fallback to basic analysis if AI fails
       const riskScore = Math.min(1, Math.max(0, 
         0.3 * (req.body.amount > 10000 ? 0.8 : req.body.amount / 10000) + 
-        0.2 * (req.body.merchant.includes('Suspicious') ? 0.9 : 0.1) +
-        0.1 * (req.body.location.includes('High Risk') ? 0.8 : 0.1)
+        0.2 * ((req.body.merchant || '').includes('Suspicious') ? 0.9 : 0.1) +
+        0.1 * ((req.body.location || '').includes('High Risk') ? 0.8 : 0.1)
       ));
       
       const responseTime = Date.now() - startTime;
       
-      res.status(500).json({ 
+      // Create fallback response that can be processed by HITL middleware
+      const fallbackResponse = { 
         riskScore: Math.round(riskScore * 100),
         riskLevel: riskScore > 0.7 ? 'High' : riskScore > 0.3 ? 'Medium' : 'Low',
         explanation: 'Basic risk assessment (AI service unavailable)',
@@ -198,11 +303,18 @@ app.post('/api/analyze/transaction', checkJwt, async (req, res) => {
         provider: 'fallback',
         model: 'basic',
         success: false,
+        error: errorMsg,
         requestId,
         responseTime: `${responseTime}ms`,
-        warning: 'Using fallback analysis due to error',
-        error: errorMsg
-      });
+        // Ensure these fields are present for HITL middleware
+        requiresHumanReview: riskScore > 70, // Flag for human review if high risk
+        reviewStatus: 'pending'
+      };
+      
+      // Store the response in the request object for the HITL middleware
+      req._hitlResponse = fallbackResponse;
+      
+      res.status(500).json(fallbackResponse);
     }
   } catch (error) {
     const errorMsg = error.message || 'Unknown error';
@@ -323,40 +435,136 @@ app.post('/api/analyze/risk-score', checkJwt, async (req, res) => {
   }
 });
 
+// Test endpoint for direct connection testing
+app.get('/test-connection', (req, res) => {
+  console.log('Test connection endpoint hit at:', new Date().toISOString());
+  res.send('Server is responding!');
+});
+
 // Health Check
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+  console.log('Health check endpoint hit at:', new Date().toISOString());
+  const response = { 
+    status: 'ok', 
+    timestamp: new Date().toISOString(),
+    nodeVersion: process.version,
+    platform: process.platform,
+    memoryUsage: process.memoryUsage()
+  };
+  console.log('Sending response:', JSON.stringify(response, null, 2));
+  res.json(response);
 });
 
-// Start server with error handling
-const server = app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server running on port ${PORT}`);
-  console.log('Environment:', process.env.NODE_ENV || 'development');
-  console.log('Available endpoints:');
-  console.log(`  - GET  http://localhost:${PORT}/api/health`);
-  console.log(`  - POST http://localhost:${PORT}/api/test/analyze/transaction`);
-  console.log(`  - POST http://localhost:${PORT}/api/analyze/transaction (requires auth)`);
-});
-
-// Handle server errors
-server.on('error', (error) => {
-  if (error.code === 'EADDRINUSE') {
-    console.error(`Port ${PORT} is already in use. Please stop any other servers using this port.`);
-  } else {
-    console.error('Server error:', error);
+// Function to find an available port
+const findAvailablePort = async (startPort) => {
+  let port = startPort;
+  let attempts = 0;
+  
+  while (attempts < MAX_PORT_ATTEMPTS) {
+    const inUse = await isPortInUse(port);
+    if (!inUse) {
+      return port;
+    }
+    console.log(`Port ${port} is in use, trying next port...`);
+    port++;
+    attempts++;
   }
-  process.exit(1);
-});
+  
+  throw new Error(`Could not find an available port after ${MAX_PORT_ATTEMPTS} attempts`);
+};
 
-// Handle unhandled promise rejections
-process.on('unhandledRejection', (reason, promise) => {
-  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
-  // Consider restarting the server or performing cleanup here
-});
+// Start server with enhanced error handling and dynamic port selection
+const startServer = async () => {
+  try {
+    // Find an available port
+    currentPort = await findAvailablePort(START_PORT);
+    console.log(`Found available port: ${currentPort}`);
+    
+    // Kill any processes using this port just to be safe
+    await killProcessOnPort(currentPort);
 
-// Handle uncaught exceptions
-process.on('uncaughtException', (error) => {
-  console.error('Uncaught Exception:', error);
-  // Consider restarting the server or performing cleanup here
-  process.exit(1);
-});
+    // Create HTTP server
+    const server = app.listen(currentPort, HOST, () => {
+      console.log(`\n✅ Server running at:`);
+      console.log(`   Local:  http://localhost:${currentPort}`);
+      console.log(`   Network: http://${require('os').networkInterfaces().eth0?.[0]?.address || '0.0.0.0'}:${currentPort}`);
+      console.log(`\n📊 Health check: http://localhost:${currentPort}/health`);
+      console.log(`🔌 Test connection: http://localhost:${currentPort}/test-connection`);
+      console.log(`\nEnvironment: ${process.env.NODE_ENV || 'development'}`);
+      console.log(`Node.js: ${process.version}`);
+      console.log(`Platform: ${process.platform}\n`);
+    });
+
+    // Handle server errors
+    server.on('error', async (error) => {
+      if (error.code === 'EADDRINUSE') {
+        console.error(`❌ Port ${currentPort} is still in use after cleanup attempt`);
+        console.log('Trying next port...');
+        // Try starting the server again with the next port
+        currentPort++;
+        if (currentPort < START_PORT + MAX_PORT_ATTEMPTS) {
+          return startServer();
+        } else {
+          console.error('Maximum port attempts reached. Please check for port conflicts.');
+        }
+      } else {
+        console.error('❌ Server error:', error.message);
+      }
+      process.exit(1);
+    });
+
+    // Graceful shutdown
+    const gracefulShutdown = () => {
+      console.log('\n🛑 Received shutdown signal. Closing server...');
+      server.close(() => {
+        console.log('✅ Server closed');
+        process.exit(0);
+      });
+
+      // Force shutdown after 5 seconds
+      setTimeout(() => {
+        console.error('❌ Forcing shutdown...');
+        process.exit(1);
+      }, 5000);
+    };
+
+    // Handle termination signals
+    process.on('SIGTERM', gracefulShutdown);
+    process.on('SIGINT', gracefulShutdown);
+
+    // Handle unhandled rejections
+    process.on('unhandledRejection', (reason, promise) => {
+      console.error('UNHANDLED REJECTION! 💥 Shutting down...');
+      console.error('Reason:', reason);
+      server.close(() => {
+        process.exit(1);
+      });
+    });
+
+    // Handle uncaught exceptions
+    process.on('uncaughtException', (error) => {
+      console.error('UNCAUGHT EXCEPTION! 💥 Shutting down...');
+      console.error(error);
+      server.close(() => {
+        process.exit(1);
+      });
+    });
+
+  } catch (error) {
+    console.error('❌ Failed to start server:', error);
+    process.exit(1);
+  }
+};
+
+// Log environment configuration
+console.log('\n🔧 Environment Configuration:');
+console.log(`- NODE_ENV: ${process.env.NODE_ENV || 'development'}`);
+console.log(`- AI_PROVIDER: ${process.env.AI_PROVIDER || 'Not set'}`);
+console.log(`- GOOGLE_AI_KEY: ${process.env.GOOGLE_AI_KEY ? '***' : 'Not set'}`);
+console.log(`- OPENAI_API_KEY: ${process.env.OPENAI_API_KEY ? '***' : 'Not set'}`);
+console.log(`- AUTH0_DOMAIN: ${process.env.AUTH0_DOMAIN || 'Not set'}`);
+console.log(`- AUTH0_AUDIENCE: ${process.env.AUTH0_AUDIENCE || 'Not set'}`);
+
+// Start the server
+console.log('\n🚀 Starting server...');
+startServer();
