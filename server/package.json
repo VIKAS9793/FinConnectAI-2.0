@@ -14,7 +14,7 @@
     "express": "^4.22.1",
     "express-oauth2-jwt-bearer": "^1.2.0",
     "openai": "^4.28.0",
-    "axios": "^1.6.2"
+    "axios": "^1.15.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
